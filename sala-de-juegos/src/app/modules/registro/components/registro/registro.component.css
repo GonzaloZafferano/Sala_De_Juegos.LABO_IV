@@ -1,0 +1,8 @@
+.centrar{
+    margin: 0px auto;
+}
+
+.sombra{
+    box-shadow: 10px 10px 50px 0 rgba(255, 6, 6, 0.2);
+    border-radius: 30px;
+}

@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+
+.toast-custom-error {
+    margin: 5px;
+    background-color: #d17575;
+    color: #ffffff;
+    font-size: 1.05em;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 20px;  
+}
+
+.toast-custom-position{
+    position: fixed;
+    top: 60px;
+    right: 10px;
+}
+
+.toast-custom-success {
+    margin: 5px;
+    background-color: #5b9654;
+    color: #ffffff;
+    font-size: 1.05em;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 20px;  
+}
