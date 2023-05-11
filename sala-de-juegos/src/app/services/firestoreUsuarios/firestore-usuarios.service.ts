@@ -4,6 +4,7 @@ import { FirestoreDBService } from '../firestoreDB/firestore-db.service';
 import { TipoIgualdad } from 'src/app/enums/TipoIgualdad';
 import { FirestoreLoginService } from '../firestoreAuthLog/firestore-auth-login.service';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { LocalStorageService } from '../localStorage/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,24 @@ import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/aut
 
 export class FirestoreUsuariosService {
   private nombreColeccion: string = 'usuarios';
-  constructor(private firestoreDB: FirestoreDBService, private auth: AngularFireAuth) {
+  private suscripcion: any;
+  constructor(private firestoreDB: FirestoreDBService, private loginService: FirestoreLoginService, private localStorage: LocalStorageService) {
+    if (this.suscripcion)
+      this.suscripcion.unsubscribe();
+    this.suscripcion = this.loginService.ObtenerCambiosDeEstado().subscribe(usuario => {
+      if (usuario)
+        this.localStorage.guardarItem('usuario', usuario)
+      else
+        this.localStorage.eliminarItem('usuario');
+    });
+  }
+
+  get usuarioEstaLogueado (){
+    return this.localStorage.obtenerItem('usuario') != null;
+  }
+
+  get usuarioActual(){
+    return this.localStorage.obtenerItem('usuario');
   }
 
   cargarUsuarioConIdAsignado(usuario: Usuario) {
@@ -42,7 +60,7 @@ export class FirestoreUsuariosService {
 
 
 
-  
+
 
   //TODO borrar si no se usa
   cargarUsuarioSinIdAsignado(usuario: Usuario) {

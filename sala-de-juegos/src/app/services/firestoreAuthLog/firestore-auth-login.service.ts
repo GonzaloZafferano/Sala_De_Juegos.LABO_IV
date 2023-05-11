@@ -20,6 +20,10 @@ export class FirestoreLoginService {
   }
 
   ObtenerCambiosDeEstado() {
-    return this.auth.authState;
+    return this.auth.authState;   
+  }
+
+  obtenerUsuarioActual(){
+    return this.auth;
   }
 }

@@ -15,7 +15,8 @@ export class HomeComponent {
   constructor(public loginService: FirestoreLoginService, private fsUsuarioService : FirestoreUsuariosService) { }
 
   ngOnInit() { 
-    this.verificarEstadoDeUsuario();   
+    this.verificarEstadoDeUsuario();  
+  //  this.obtenerUser(); 
   }
 
   ngOnDestroy(){
@@ -43,8 +44,15 @@ export class HomeComponent {
     });
   }
 
-  obtenerFechaString(usuarioLogueado: any, aaaaMMdd: boolean = false) {
-    debugger;
+  obtenerUser(){
+    this.loginService.obtenerUsuarioActual().currentUser.then(x =>{
+      let a = x;
+
+      debugger;
+    });
+  }
+
+  obtenerFechaString(usuarioLogueado: any, aaaaMMdd: boolean = false) { 
     let fecha = usuarioLogueado.fechaRegistro;
     let dia = fecha.getDate();
     let mes = fecha.getMonth() + 1;
