@@ -5,8 +5,17 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
   providedIn: 'root'
 })
 export class FirestoreLoginService {
-  constructor(private auth: AngularFireAuth) { }
+  suscripcion: any;
+  usuarioEstaLogueado: boolean = false;
+  constructor(private auth: AngularFireAuth) {
 
+    if (this.suscripcion)
+      this.suscripcion.unsubscribe();
+
+    this.suscripcion = this.auth.authState.subscribe(x => {
+      this.usuarioEstaLogueado = x != null;
+    });
+  }
   registrarUsuario(usuario: string, password: string) {
     return this.auth.createUserWithEmailAndPassword(usuario, password);
   }
@@ -20,10 +29,10 @@ export class FirestoreLoginService {
   }
 
   ObtenerCambiosDeEstado() {
-    return this.auth.authState;   
+    return this.auth.authState;
   }
 
-  obtenerUsuarioActual(){
+  obtenerUsuarioActual() {
     return this.auth;
   }
 }

@@ -19,7 +19,7 @@ export class HeaderComponent {
   ngOnInit() {
     this.verificarEstadoDeUsuario();
   }
-
+ 
   ngOnDestroy() {
     if (this.suscripcion)
       this.suscripcion.unsubscribe();

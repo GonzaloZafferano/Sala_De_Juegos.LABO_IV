@@ -53,17 +53,20 @@ export class HomeComponent {
   }
 
   obtenerFechaString(usuarioLogueado: any, aaaaMMdd: boolean = false) { 
-    let fecha = usuarioLogueado.fechaRegistro;
-    let dia = fecha.getDate();
-    let mes = fecha.getMonth() + 1;
-    let anio = fecha.getFullYear();
-
-    let cadenaDia = dia < 10 ? '0' + dia.toString() : dia.toString();
-    let cadenaMes = mes < 10 ? '0' + mes.toString() : mes.toString();
-
-    if (aaaaMMdd)
-      return anio.toString() + '-' + cadenaMes + '-' + cadenaDia;
-
-    return cadenaDia + '-' + cadenaMes + '-' + anio.toString();
+    if(usuarioLogueado){
+      let fecha = usuarioLogueado.fechaRegistro;
+      let dia = fecha.getDate();
+      let mes = fecha.getMonth() + 1;
+      let anio = fecha.getFullYear();
+  
+      let cadenaDia = dia < 10 ? '0' + dia.toString() : dia.toString();
+      let cadenaMes = mes < 10 ? '0' + mes.toString() : mes.toString();
+  
+      if (aaaaMMdd)
+        return anio.toString() + '-' + cadenaMes + '-' + cadenaDia;
+  
+      return cadenaDia + '-' + cadenaMes + '-' + anio.toString();
+    }
+    return '';
   }
 }

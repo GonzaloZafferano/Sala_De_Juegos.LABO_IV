@@ -64,7 +64,7 @@ export class RegistroComponent {
   }
 
   registrarUsuario() {
-    console.log(this.form.value);
+    //console.log(this.form.value);
     let hayError = false;
     let hayCamposVacios = false;
 
