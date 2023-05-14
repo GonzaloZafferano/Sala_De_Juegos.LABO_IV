@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CollectionReference, DocumentData, DocumentReference, Firestore, collection, collectionData, deleteDoc, doc, getDoc, getDocs, query, setDoc, updateDoc, where } from '@angular/fire/firestore';
+import { CollectionReference, DocumentData, DocumentReference, Firestore, collection, collectionData, deleteDoc, doc, getDoc, getDocs, orderBy, query, setDoc, updateDoc, where } from '@angular/fire/firestore';
+import { Orden } from 'src/app/enums/Orden';
 import { TipoIgualdad } from 'src/app/enums/TipoIgualdad';
 
 @Injectable({
@@ -49,7 +50,7 @@ export class FirestoreDBService {
       q = query(coleccion, where(columna, '!=', valorBuscado));
 
     const docs = await getDocs(q)
-      .then((docs) => {
+      .then((docs) => {       
         return docs;
       });
     const listaDeObjetos: DocumentData[] = [];
@@ -66,6 +67,14 @@ export class FirestoreDBService {
       return collectionData(query(coleccion, where(columna, '==', valorBuscado)));
     else
       return collectionData(query(coleccion, where(columna, '!=', valorBuscado)));
+  }
+
+  traerListaDeObjetosOrdenadaConObservable(nombreColeccion: string, columna: string, orden: Orden) {
+    const coleccion: CollectionReference<DocumentData> = collection(this.firestore, nombreColeccion);
+    if (orden == Orden.asc)
+      return collectionData(query(coleccion, orderBy(columna, 'asc')));
+    else
+      return collectionData(query(coleccion, orderBy(columna, 'desc')));
   }
 
   modificarObjeto(nombreColeccion: string, objetoAModificar: any) {

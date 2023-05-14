@@ -1,23 +1,22 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanDeactivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { FirestoreLoginService } from '../services/firestoreAuthLog/firestore-auth-login.service';
+import { FirestoreLoginService } from '../../services/firestoreAuthLog/firestore-auth-login.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginGuard implements CanActivate, CanDeactivate<unknown> {
-
-  constructor(private firestoreLogin: FirestoreLoginService, private router: Router,){
-
+  constructor(private firestoreLogin: FirestoreLoginService, private router: Router,) {
   }
+
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(this.firestoreLogin.usuarioEstaLogueado){
+    if (!this.firestoreLogin.getUsuarioEstaLogueado) {
       return true;
-    }else
-    this.router.navigate(['../login']);
+    }
+    this.router.navigate(['']);
     return false;
   }
   canDeactivate(
@@ -27,5 +26,4 @@ export class LoginGuard implements CanActivate, CanDeactivate<unknown> {
     nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return true;
   }
-  
 }

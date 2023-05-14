@@ -1,4 +1,4 @@
-<nav class="navbar bg-dark navbar-expand-lg text-light m-0 p-1 fw-bold d-flex justify-content-between">
+<nav class="navbar bg-dark navbar-expand-lg text-light m-0 p-1 fw-bold d-flex justify-content-between" style="z-index: 10;">
     <div class="mx-2">
         <img src="assets/logo/logo.jpg" class="logo">
     </div>
@@ -6,13 +6,13 @@
         <button routerLink="../quien-soy"  class="btn btn-warning mx-2">
             Quien Soy
         </button>
-        <button [hidden]="usuarioEstaLogueado" routerLink="../login" class="btn btn-outline-primary mx-2">
+        <button [hidden]="verificarEstadoDeUsuario()" routerLink="../login" class="btn btn-outline-primary mx-2">
             Login
         </button>
-        <button [hidden]="usuarioEstaLogueado" routerLink="../registro" class="btn btn-outline-primary mx-2">
+        <button [hidden]="verificarEstadoDeUsuario()" routerLink="../registro" class="btn btn-outline-primary mx-2">
             Registro
         </button>
-        <button [hidden]="!usuarioEstaLogueado" (click)="desloguear()" class="btn btn-outline-danger mx-2">
+        <button [hidden]="!verificarEstadoDeUsuario()" (click)="desloguear()" class="btn btn-outline-danger mx-2">
             Logout
         </button>
     </div>

@@ -63,8 +63,7 @@ export class RegistroComponent {
     return this.form.get('confirmarClave');
   }
 
-  registrarUsuario() {
-    //console.log(this.form.value);
+  registrarUsuario() { 
     let hayError = false;
     let hayCamposVacios = false;
 

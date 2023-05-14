@@ -16,8 +16,7 @@ export class HeaderComponent {
   constructor(private router: Router, private firestoreLogin: FirestoreLoginService, private toast: ToastPredeterminadosService) {
   }
 
-  ngOnInit() {
-    this.verificarEstadoDeUsuario();
+  ngOnInit() {  
   }
  
   ngOnDestroy() {
@@ -32,9 +31,6 @@ export class HeaderComponent {
   }
 
   verificarEstadoDeUsuario() {
-    this.suscripcion = this.firestoreLogin.ObtenerCambiosDeEstado().subscribe(usuario => {
-      //' !! ': Convierte a la variable en booleano. Si es null o undefined, es FALSE, caso contrario TRUE.
-      this.usuarioEstaLogueado = !!usuario; //Null o undefined = No hay usuario logueado = false.         
-    });
+    return this.firestoreLogin.getUsuarioEstaLogueado;
   }
 }

@@ -3,11 +3,12 @@
     max-width: 350px;
     position: absolute;
     right: 15px !important;
+    position: fixed;
+    top: 60px;
+    right: 25px;
+    border-radius: 10px;
 }
 
-.nombre-usuario{
-
-}
 
 .sombra{
     box-shadow: 10px 10px 50px 0 rgba(255, 6, 6, 0.2);

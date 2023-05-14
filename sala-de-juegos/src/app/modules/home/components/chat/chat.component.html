@@ -1,0 +1,18 @@
+<div class="estilos-contenedor">
+    <div *ngFor="let mensaje of mensajes">
+        <div class="burbuja">
+            <div class="burbuja-ajena" [ngClass]="{'burbuja-propia': mensaje.usuarioId == usuarioLogueadoId}">
+                <div
+                    [ngClass]="{'mensaje-ajeno': mensaje.usuarioId != usuarioLogueadoId, 'mensaje-propio': mensaje.usuarioId == usuarioLogueadoId}">
+                    <div class="mensaje">
+                        <span *ngIf="mensaje.usuarioId != usuarioLogueadoId">{{mensaje.usuario}}</span>
+                        <span>{{obtenerFechaString(mensaje)}}</span>
+                        <p>
+                            {{mensaje.mensaje}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

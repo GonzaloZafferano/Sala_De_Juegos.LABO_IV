@@ -1,28 +1,46 @@
-<div>
-    <div class="bg-success">
-        <nav>
-            <h3 class="px-2 fs-2 fw-bold text-light">
-                Bienvenido 
-                <span class="nombre-usuario">
-                    {{usuarioActual?.usuario}}
-                </span> 
-            </h3>
+<div >
+    <div class="bg-success" style="height: 45px;">
+        <nav style="height: 100% !important;">
+            <div *ngIf="spinner; else titulo" class="d-flex" style="align-items: center; height: 100%;">
+                <div class="spinner-border text-light mx-5" style="align-self: center; scale: 1.2;"></div>
+            </div>
+            <ng-template #titulo>
+                <ng-container *ngIf="usuarioActual">
+                    <h3 class="px-2 fs-2 fw-bold text-light">
+                        Bienvenido
+                        <span class="nombre-usuario">
+                            {{usuarioActual.usuario}}
+                        </span>
+                    </h3>
+                </ng-container>
+            </ng-template>
         </nav>
     </div>
     <div>
-        <button class="btn btn-primary m-2">Ahorcado</button>
+        <button routerLink="ahorcado" class="btn btn-primary m-2">Ahorcado</button>
         <button class="btn btn-primary m-2">Mayor menos</button>
-        <button class="btn btn-primary m-2">Preguntados</button>
+        <button  class="btn btn-primary m-2">Preguntados</button>
+        <button routerLink="chat" class="btn btn-primary m-2">Sala de CHAT</button>
     </div>
-    <div class="card datos-usuario sombra fs-4">
-        <div class="card-body sombra">
-            <h5 class="card-title fs-4">{{usuarioActual?.usuario}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted fs-5">{{usuarioActual?.correo}}</h6>
-            <p class="card-text fs-6 p-0 m-0">Fecha de registro:</p>
-            <p class="card-text fs-6 p-0 m-0">{{obtenerFechaString(usuarioActual)}}</p> 
+    <div style="height: 80vh;">
+        <router-outlet></router-outlet>
+    </div>
+    <div class="datos-usuario">
+        <div class="card datos-usuario sombra fs-4">
+            <div class="card-body sombra">
+                <div *ngIf="spinner; else datosUsuario" class="d-flex justify-content-center">
+                    <span class="m-3 fs-3 fw-bold">Cargando...</span>
+                    <div class="spinner-border text-danger" style="align-self: center; scale: 1.2;"></div>
+                </div>
+                <ng-template #datosUsuario>
+                    <ng-container *ngIf="usuarioActual">
+                        <h5 class="card-title fs-4">{{usuarioActual.usuario}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted fs-5">{{usuarioActual.correo}}</h6>
+                        <p class="card-text fs-6 p-0 m-0">Fecha de registro:</p>
+                        <p class="card-text fs-6 p-0 m-0">{{obtenerFechaString(usuarioActual)}}</p>
+                    </ng-container>
+                </ng-template>
+            </div>
         </div>
     </div>
 </div>
-
-
-<!-- <button (click)="obtenerUser()"> algo</button> -->

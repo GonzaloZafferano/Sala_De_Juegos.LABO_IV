@@ -12,11 +12,13 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { provideFirestore, getFirestore, FirestoreModule } from '@angular/fire/firestore';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { HeaderComponent } from './components/header/header.component';
+import { CommonModule } from '@angular/common';
+import { HomeComponent } from './modules/home/components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent, HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +29,7 @@ import { HeaderComponent } from './components/header/header.component';
     AngularFireModule.initializeApp(environment.firebase),
     FirestoreModule,
     FormsModule,
+    CommonModule, 
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot()

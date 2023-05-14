@@ -1,0 +1,71 @@
+ * {
+     font-weight: bold;
+     color: #4e2665;
+ }
+
+ .burbuja {
+     font-size: 1.2em;
+     position: relative;
+     width: 100%;
+     height: auto;
+     display: flex;
+     margin-top: 14px;
+     margin-bottom: 2px;
+
+ }
+
+ .burbuja-ajena {
+     display: flex;
+     width: 100%;
+     justify-content: start;
+ }
+
+ .burbuja-propia {
+     justify-content: end !important;
+ }
+
+ .mensaje-ajeno {
+     background: #9beafa;
+     width: 70%;
+
+     border-end-end-radius: 40px;
+     border-end-start-radius: 40px;
+     border-top-right-radius: 40px;
+
+     position: relative;
+     left: 25px;
+ }
+
+ .mensaje-propio {
+     background: #8fc218;
+     width: 70%;
+
+     border-end-end-radius: 40px;
+     border-end-start-radius: 40px;
+     border-top-left-radius: 40px;
+
+     position: relative;
+     right: 25px;
+ }
+
+ .estilos-contenedor {
+     height: 100%;
+     overflow-y: auto;
+     background-color: red;
+     width: 75vw;
+     margin: 0 auto;    
+ }
+
+ span {
+     display: block;
+ }
+
+ .mensaje {
+     padding-left: 15px;
+     padding-top: 10px;
+ }
+
+ .animated {
+     animation-duration: 1s;
+     animation-fill-mode: both;
+ }

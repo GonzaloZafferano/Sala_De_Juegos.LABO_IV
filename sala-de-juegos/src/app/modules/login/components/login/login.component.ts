@@ -87,20 +87,20 @@ export class LoginComponent {
         if (idUsuario != null) {
           await this.fsUsuarioService.traerUsuarioPorId(idUsuario)
             .then(x => {
-              if (x.length > 0) {
-                let usuario = x[0] as any;
+              if (x != null) {
+                let usuario = x as any;            
                 this.usuario.clave = usuario.clave;
                 this.usuario.correo = usuario.correo;
                 this.usuario.usuario = usuario.usuario;
                 this.usuario.id = usuario.id;
                 this.usuario.fechaRegistro = usuario.fechaRegistro;
-                        
+
                 this.logDeUsuario.cargarUsuarioConIdAsignado(new Log(this.usuario.id));
                 this.toastPredeterminado.exito(`Bienvenido/a ${this.usuario.usuario}!`, 'Login exitoso!');
                 this.router.navigate(['../home']);
               } else
                 mensajeError = 'Ha ocurrido un error al intentar cargar los datos del usuario.';
-            });
+            }).catch();
         } else
           mensajeError = 'Ha ocurrido un error al intentar cargar los datos del usuario.';
 
@@ -143,8 +143,23 @@ export class LoginComponent {
     }
   }
 
-  cargarUsuarioDefault() {
-    this.correo?.setValue('prueba@prueba.com');
-    this.clave?.setValue('111111');
+  listaUsuarios: any = [
+    {
+      correo: 'prueba@prueba.com',
+      clave: '111111'
+    },
+    {
+      correo: 'nicolas@prueba.com',
+      clave: '111111'
+    },
+    {
+      correo: 'gonzalo@prueba.com',
+      clave: '111111'
+    }
+  ];
+
+  cargarUsuarioDefault(index: number) {
+    this.correo?.setValue(this.listaUsuarios[index].correo);
+    this.clave?.setValue(this.listaUsuarios[index].clave);
   }
 }
