@@ -25,7 +25,9 @@
  }
 
  .mensaje-ajeno {
-     background: #9beafa;
+     background: #a8e1ed;
+     border: solid 1px #2897ad;
+
      width: 70%;
 
      border-end-end-radius: 40px;
@@ -37,9 +39,9 @@
  }
 
  .mensaje-propio {
-     background: #8fc218;
+     background: #b7d473;
      width: 70%;
-
+     border: solid 1px #7ca027;
      border-end-end-radius: 40px;
      border-end-start-radius: 40px;
      border-top-left-radius: 40px;
@@ -49,11 +51,13 @@
  }
 
  .estilos-contenedor {
-     height: 100%;
+     height: 100% !important;
      overflow-y: auto;
-     background-color: red;
+     background-color: rgba(255, 140, 0, 0.618);
+     border: solid 1px rgb(222, 122, 0);
+     border-radius: 15px;
      width: 75vw;
-     margin: 0 auto;    
+     margin: 0 auto;
  }
 
  span {
@@ -68,4 +72,35 @@
  .animated {
      animation-duration: 1s;
      animation-fill-mode: both;
+ }
+
+ /*SCROLL*/
+ ::-webkit-scrollbar {
+     width: 10px;
+     border-radius: 100px !important;
+
+     /* Ancho del scrollbar */
+ }
+
+ ::-webkit-scrollbar-track {
+     background-color: rgba(255, 140, 0, 0.618);
+     border-radius: 100px !important;
+     /* Color de fondo del track (área detrás del scrollbar) */
+ }
+
+ ::-webkit-scrollbar-thumb {
+     background-color: rgb(222, 122, 0);
+     border-radius: 100px;
+     /* Color del thumb (el agarre del scrollbar) */
+ }
+
+ ::-webkit-scrollbar-thumb:hover {
+     background-color: rgb(144, 79, 1);
+     /* Color del thumb al pasar el mouse sobre él */
+ }
+
+ /* Estilos para el scroll horizontal */
+ ::-webkit-scrollbar-horizontal {
+     height: 50px !important;
+     /* Altura del scrollbar */
  }

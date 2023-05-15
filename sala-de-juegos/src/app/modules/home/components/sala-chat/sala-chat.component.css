@@ -7,6 +7,15 @@
     height: 100%;
 }
 
+.caja-mensaje{
+    background-color: rgba(255, 140, 0, 0.739);
+    border: solid 1px rgb(187, 103, 1);
+    width: 100%; 
+    height: 70px;
+    padding: 10px;
+    border-radius: 15px;
+}
+
 .estilos-contenedor-boton-input{
     display: flex; 
     justify-content: space-around;
@@ -16,7 +25,19 @@
    border-radius: 60px; 
    height: 50px;
    width: 150px;
+   background-color: rgba(222, 67, 0, 0.991);
+   color: white;
+   font-size: 1.05em;
+   font-weight: bold;
+   border: solid 3px rgb(84, 25, 0);
 }
+
+.deshabilitado{
+    background-color: rgba(190, 138, 116, 0.991);
+    color: rgb(133, 133, 133);
+    border: solid 3px rgba(98, 73, 62, 0.991);
+}
+
 .estilos-input{
 width: 80%; 
 border-radius: 60px; 

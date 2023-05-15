@@ -6,6 +6,9 @@ import { Injectable } from '@angular/core';
 export class FormateoService {
   constructor() { }
 
+  obtenerPalabraSinAcentos(palabra : string){
+    return palabra.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
   obtenerFechaString(fecha: any, aaaaMMdd: boolean = false, hms: boolean = false) {
     if (!(fecha instanceof Date))
       fecha = new Date(fecha.fecha.seconds * 1000);

@@ -34,4 +34,47 @@ export class ToastPredeterminadosService {
     titulo != '' ? titulo : 'Ha ocurrido un error.', 
     errorOptions);
   }
+
+  perdio(mensaje : string = '', titulo : string = ''){
+    const errorOptions = {
+      toastClass: 'toast-custom-perdio',
+      timeOut: 4000,
+      extendedTimeOut: 1000,
+      enableHtml: true,
+      positionClass: 'toast-custom-juego-position',
+    };
+
+    this.toastr.error(mensaje != '' ? mensaje : 'HA PERDIDO!!!.', 
+    titulo != '' ? titulo : 'Ha perdido.', 
+    errorOptions);
+  }
+
+  gano(mensaje : string = '', titulo : string = ''){
+    const successOptions = {
+      toastClass: 'toast-custom-gano',
+      timeOut: 4000,
+      extendedTimeOut: 1000,
+      enableHtml: true,
+      positionClass: 'toast-custom-juego-position',     
+      //closeButton : true,
+      buttons: [
+        {
+          text: 'Botón adicional',
+          action : ()=>{
+            alert();
+          }
+          // action: (toast) => {
+          //   // Acción al hacer clic en el botón adicional
+          //   this.toastr.remove(toast.toastId);
+          //   // Aquí puedes realizar la acción deseada
+          // }
+        }
+      ]
+    };
+
+    this.toastr.success(mensaje != '' ? mensaje : 'HA GANADO!!!.', 
+    titulo != '' ? titulo : 'Ha ganado.', 
+    successOptions);
+  }
+
 }

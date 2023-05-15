@@ -5,6 +5,7 @@ import { FirestoreLoginService } from 'src/app/services/firestoreAuthLog/firesto
 import { FirestoreUsuariosService } from 'src/app/services/firestoreUsuarios/firestore-usuarios.service';
 import { FormateoService } from 'src/app/services/formateo/formateo.service';
 import { MensajeService } from 'src/app/services/mensaje/mensaje.service';
+import { ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-chat',
@@ -12,18 +13,50 @@ import { MensajeService } from 'src/app/services/mensaje/mensaje.service';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent {
-  textoBoton: string = 'Enviar Mensaje';
-  @Input() mensajes : any[] | undefined;
-  @Input() usuarioLogueadoId : string = '';
-  constructor(private formateo: FormateoService){}
+  @Input() usuarioLogueadoId: string = '';
+  @ViewChild('contenedor', { static: false }) contenedor: ElementRef | undefined;
+  mensajes: any[] | undefined;
+  cargando: boolean = false;
+  suscripcion: any;
 
-  async ngOnInit() {   
+  constructor(private formateo: FormateoService, private mensajeService: MensajeService) { }
+
+  async ngOnInit() {
+    this.cargando = true;
+    this.suscripcion = this.mensajeService.obtenerListadoDeMensajesOrdenadoObservable().subscribe(x => {
+      this.mensajes = x;
+
+      let usuarioSubioScroll = this.contenedor?.nativeElement.scrollTop + 120 <
+        this.contenedor?.nativeElement.scrollHeight - this.contenedor?.nativeElement.clientHeight;
+
+      if (!usuarioSubioScroll)
+        this.scrollDown();
+
+      this.cargando = false;
+    });
   }
 
   ngOnDestroy() {
+    if (this.suscripcion)
+      this.suscripcion.unsubscribe();
   }
-
   obtenerFechaString(mensaje: any) {
     return this.formateo.obtenerFechaString(mensaje, false, true)
+  }
+
+  scrollDown() {
+    setTimeout(() => {
+      if (this.contenedor) {
+        //FORMA 1
+        // this.contenedor.nativeElement.scrollTop = this.contenedor?.nativeElement.scrollHeight;
+
+        //FORMA 2
+        const contenedor = this.contenedor.nativeElement;
+        const ultimoHijo = contenedor.lastElementChild;
+        if (ultimoHijo) {
+          ultimoHijo.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }
+      }
+    }, 300);
   }
 }
