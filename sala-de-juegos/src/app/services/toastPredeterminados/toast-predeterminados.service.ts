@@ -38,7 +38,7 @@ export class ToastPredeterminadosService {
   perdio(mensaje : string = '', titulo : string = ''){
     const errorOptions = {
       toastClass: 'toast-custom-perdio',
-      timeOut: 4000,
+      timeOut: 2000,
       extendedTimeOut: 1000,
       enableHtml: true,
       positionClass: 'toast-custom-juego-position',
@@ -52,7 +52,35 @@ export class ToastPredeterminadosService {
   gano(mensaje : string = '', titulo : string = ''){
     const successOptions = {
       toastClass: 'toast-custom-gano',
-      timeOut: 4000,
+      timeOut: 2000,
+      extendedTimeOut: 1000,
+      enableHtml: true,
+      positionClass: 'toast-custom-juego-position',     
+      //closeButton : true,
+      buttons: [
+        {
+          text: 'Botón adicional',
+          action : ()=>{
+            alert();
+          }
+          // action: (toast) => {
+          //   // Acción al hacer clic en el botón adicional
+          //   this.toastr.remove(toast.toastId);
+          //   // Aquí puedes realizar la acción deseada
+          // }
+        }
+      ]
+    };
+
+    this.toastr.success(mensaje != '' ? mensaje : 'HA GANADO!!!.', 
+    titulo != '' ? titulo : 'Ha ganado.', 
+    successOptions);
+  }
+
+  empate(mensaje : string = '', titulo : string = ''){
+    const successOptions = {
+      toastClass: 'toast-custom-empate',
+      timeOut: 3000,
       extendedTimeOut: 1000,
       enableHtml: true,
       positionClass: 'toast-custom-juego-position',     

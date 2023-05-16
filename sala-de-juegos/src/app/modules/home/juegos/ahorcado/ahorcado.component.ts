@@ -96,7 +96,7 @@ export class AhorcadoComponent {
     this.bloquearBotones = true;
     Swal.fire({
       title: 'HA PERDIDO!!!',
-      text: `SE HA QUEDADO SIN INTENTOS!!! LA PALABRA ERA '${this.palabra}'. SE ASIGNARA UNA NUEVA PALABRA.`,
+      text: `SE HA QUEDADO SIN INTENTOS!!! LA PALABRA ERA '${this.palabra}'.`,
       showCancelButton: true,
       cancelButtonText: 'Cerrar',
       confirmButtonText: 'Jugar otra vez!',

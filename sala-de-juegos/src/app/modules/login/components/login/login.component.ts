@@ -48,7 +48,7 @@ export class LoginComponent {
   }
 
   iniciarSesion() {
-    console.log(this.form.value);
+    //console.log(this.form.value);
     let hayError = false;
     let hayCamposVacios = false;
 

@@ -28,7 +28,7 @@
 
 .toast-custom-juego-position {
     position: fixed;
-    top: 35%;
+    bottom: 100px !important;
     left: 30%;
     width: 40%;
     height: 300px;
@@ -49,6 +49,16 @@
 .toast-custom-gano {
     margin: 5px;
     background-color: #5b9654;
+    color: #ffffff;
+    font-size: 1.05em;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.toast-custom-empate{
+    margin: 5px;
+    background-color: #548796;
     color: #ffffff;
     font-size: 1.05em;
     font-weight: bold;

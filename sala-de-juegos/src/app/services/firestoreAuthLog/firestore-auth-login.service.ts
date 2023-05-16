@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { LocalStorageService } from '../localStorage/local-storage.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +13,14 @@ export class FirestoreLoginService {
   //Esta variable me permite controlar en tiempo real si hay un usuario logueado.
   usuarioEstaLogueado : boolean = false;
 
-  constructor(private auth: AngularFireAuth, private localStorage: LocalStorageService) {
+  constructor(private auth: AngularFireAuth, private localStorage: LocalStorageService, private route : Router) {
     this.suscripcion = this.auth.authState.subscribe(usuario => {
       if (usuario) {
         this.usuarioActual = usuario;
         this.localStorage.guardarItem('usuario', { id: usuario.uid, mail: usuario.email });
-        this.usuarioEstaLogueado = true;
+        this.usuarioEstaLogueado = true;    
+      }else{
+        this.route.navigateByUrl('login');
       }
     });
   }
