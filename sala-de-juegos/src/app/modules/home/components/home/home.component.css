@@ -1,3 +1,4 @@
+
 .datos-usuario{
     min-width: 250px;
     max-width: 350px;
@@ -8,10 +9,54 @@
     right: 25px;
     border-radius: 10px;
   background-color: rgb(212, 243, 215);
-
 }
-
 
 .sombra{
     box-shadow: 10px 10px 50px 0 rgba(255, 6, 6, 0.2);
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-button {
+  background-color: none;
+  /* color: rgb(159, 7, 7); */
+
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  position: absolute;
+  background-color: rgb(135, 189, 140);
+
+    box-shadow: 10px 10px 50px 0 rgba(255, 6, 6, 0.488);
+    min-width: 160px;
+    border-radius: 10px;
+  /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+  z-index: 1;
+  display: none;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  /* background-color: #f1f1f1; */
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.boton{
+  width: 200px;
+  height: 50px;
 }

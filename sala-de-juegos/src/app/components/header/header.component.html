@@ -3,16 +3,16 @@
         <img src="assets/logo/logo.jpg" class="logo">
     </div>
     <div class="mx-5">
-        <button routerLink="../quien-soy"  class="btn btn-warning mx-2">
+        <button routerLink="../quien-soy"  class="btn fw-bold fs-5 btn-warning mx-2">
             Quien Soy
         </button>
-        <button [hidden]="verificarEstadoDeUsuario()" routerLink="../login" class="btn btn-outline-primary mx-2">
+        <button [hidden]="verificarEstadoDeUsuario()" routerLink="../login" class="btn fw-bold fs-5 btn-outline-primary mx-2">
             Login
         </button>
-        <button [hidden]="verificarEstadoDeUsuario()" routerLink="../registro" class="btn btn-outline-primary mx-2">
+        <button [hidden]="verificarEstadoDeUsuario()" routerLink="../registro" class="btn fw-bold fs-5 btn-outline-primary mx-2">
             Registro
         </button>
-        <button [hidden]="!verificarEstadoDeUsuario()" (click)="desloguear()" class="btn btn-outline-danger mx-2">
+        <button [hidden]="!verificarEstadoDeUsuario()" (click)="desloguear()" class="btn fw-bold fs-5 btn-outline-danger mx-2">
             Logout
         </button>
     </div>

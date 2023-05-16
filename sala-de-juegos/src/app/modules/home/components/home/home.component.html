@@ -1,13 +1,23 @@
-<div >
-    <div class="bg-success" style="height: 45px;">
-        <nav style="height: 100% !important;">
+<div>
+    <div class="bg-success" style="height: 50px;">
+        <nav style="height: 100% !important;" class=" d-flex">
+            <div class="bg-success" class="dropdown">
+                <button class="dropdown-button  m-0 p-0 bg-success">
+                    <img height="50px" src="assets/hmenu.png">
+                </button>
+                <div class="dropdown-content">
+                    <button routerLink="ahorcado" class="btn btn-primary m-2 fs-4 fw-bold boton">Ahorcado</button>
+                    <button routerLink="mayor-menor" class="btn btn-primary m-2 fs-4 fw-bold boton">Mayor Menor</button>
+                    <button class="btn btn-primary m-2 fs-4 fw-bold boton">Preguntados</button>
+                    <button routerLink="chat" class="btn btn-primary m-2 fs-4 fw-bold boton">Sala de CHAT</button>
+                </div>
+            </div>
             <div *ngIf="spinner; else titulo" class="d-flex" style="align-items: center; height: 100%;">
                 <div class="spinner-border text-light mx-5" style="align-self: center; scale: 1.2;"></div>
             </div>
             <ng-template #titulo>
                 <ng-container *ngIf="usuarioActual">
-                    <h3 class="px-2 fs-2 fw-bold text-light">
-                        Bienvenido
+                    <h3 class="px-2 fs-2 fw-bold text-light" style="align-self: center; margin: auto 5px;">
                         <span class="nombre-usuario">
                             {{usuarioActual.usuario}}
                         </span>
@@ -17,12 +27,8 @@
         </nav>
     </div>
     <div>
-        <button routerLink="ahorcado" class="btn btn-primary m-2">Ahorcado</button>
-        <button routerLink="mayor-menor" class="btn btn-primary m-2">Mayor menor</button>
-        <button  class="btn btn-primary m-2">Preguntados</button>
-        <button routerLink="chat" class="btn btn-primary m-2">Sala de CHAT</button>
     </div>
-    <div style="height: 80vh;">
+    <div style="height: 80vh; margin: 10px;">
         <router-outlet></router-outlet>
     </div>
     <div class="datos-usuario">

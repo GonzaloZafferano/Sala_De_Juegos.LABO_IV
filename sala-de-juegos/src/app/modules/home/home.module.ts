@@ -7,10 +7,11 @@ import { ChatComponent } from './components/chat/chat.component';
 import { SalaChatComponent } from './components/sala-chat/sala-chat.component';
 import { AhorcadoComponent } from './juegos/ahorcado/ahorcado.component';
 import { MayorMenorComponent } from './juegos/mayor-menor/mayor-menor.component';
+import { BienvenidoComponent } from './components/bienvenido/bienvenido.component';
 
 @NgModule({
   declarations: [      
-    ChatComponent, SalaChatComponent, AhorcadoComponent, MayorMenorComponent
+    ChatComponent, SalaChatComponent, AhorcadoComponent, MayorMenorComponent, BienvenidoComponent
   ],
   imports: [
     CommonModule,

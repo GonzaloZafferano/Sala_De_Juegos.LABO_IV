@@ -13,7 +13,7 @@ import { FormateoService } from 'src/app/services/formateo/formateo.service';
 export class HomeComponent {
   suscripcion: any;
   spinner : boolean = false;
-  usuarioActual: Usuario | undefined;
+  usuarioActual: Usuario | undefined; 
 
   constructor(public loginService: FirestoreLoginService,
     private fsUsuarioService: FirestoreUsuariosService,
