@@ -17,6 +17,7 @@ import { validarCorreo } from 'src/app/validaciones/validar-correo-clave';
 export class LoginComponent {
   form!: FormGroup;
   usuario: Usuario = new Usuario();
+  cargando: boolean = false;
 
   constructor(private logDeUsuario: LogsDeUsuarioService, private router: Router, private firestoreLogin: FirestoreLoginService, private fsUsuarioService: FirestoreUsuariosService, private toastPredeterminado: ToastPredeterminadosService) { }
 
@@ -48,6 +49,7 @@ export class LoginComponent {
   }
 
   iniciarSesion() {
+    this.cargando = true;
     //console.log(this.form.value);
     let hayError = false;
     let hayCamposVacios = false;
@@ -69,8 +71,10 @@ export class LoginComponent {
     if (hayCamposVacios)
       mensajeError += 'Hay campos vacíos, por favor complételos para poder registrarse.';
 
-    if (hayError || hayCamposVacios)
+    if (hayError || hayCamposVacios){
       this.toastPredeterminado.error(mensajeError, 'Error.');
+      this.cargando = false;
+    }
 
     if (!hayError && !hayCamposVacios) {
       this.loguearUsuario();
@@ -88,7 +92,7 @@ export class LoginComponent {
           await this.fsUsuarioService.traerUsuarioPorId(idUsuario)
             .then(x => {
               if (x != null) {
-                let usuario = x as any;            
+                let usuario = x as any;
                 this.usuario.clave = usuario.clave;
                 this.usuario.correo = usuario.correo;
                 this.usuario.usuario = usuario.usuario;
@@ -98,14 +102,19 @@ export class LoginComponent {
                 this.logDeUsuario.cargarUsuarioConIdAsignado(new Log(this.usuario.id));
                 this.toastPredeterminado.exito(`Bienvenido/a ${this.usuario.usuario}!`, 'Login exitoso!');
                 this.router.navigate(['../home']);
+                setTimeout(() => {
+                  this.cargando = false;
+                }, 1000);
               } else
                 mensajeError = 'Ha ocurrido un error al intentar cargar los datos del usuario.';
             }).catch();
         } else
           mensajeError = 'Ha ocurrido un error al intentar cargar los datos del usuario.';
 
-        if (mensajeError != '')
+        if (mensajeError != '') {
           this.toastPredeterminado.error(mensajeError);
+          this.cargando = false;
+        }
       })
       .catch((e) => {
         switch (e.code) {
@@ -128,8 +137,10 @@ export class LoginComponent {
             mensajeError = "Ha ocurrido un error y no se pudo cargar el usuario.";
             break;
         }
-        if (mensajeError != '')
+        if (mensajeError != '') {
           this.toastPredeterminado.error(mensajeError, 'Ha ocurrido un error.');
+          this.cargando = false;
+        }
       });
   }
 

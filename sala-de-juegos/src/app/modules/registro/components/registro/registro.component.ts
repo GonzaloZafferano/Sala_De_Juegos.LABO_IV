@@ -16,6 +16,7 @@ import { Log } from 'src/app/models/log';
 })
 export class RegistroComponent {
   form!: FormGroup;
+  cargando: boolean = false;
 
   constructor(private logDeUsuario: LogsDeUsuarioService, private router: Router, private firestoreLogin: FirestoreLoginService, private fsUsuarioService: FirestoreUsuariosService, private toastPredeterminado: ToastPredeterminadosService) { }
 
@@ -63,7 +64,8 @@ export class RegistroComponent {
     return this.form.get('confirmarClave');
   }
 
-  registrarUsuario() { 
+  registrarUsuario() {
+    this.cargando = true;
     let hayError = false;
     let hayCamposVacios = false;
 
@@ -84,8 +86,10 @@ export class RegistroComponent {
     if (hayCamposVacios)
       mensajeError += 'Hay campos vacíos, por favor complételos para poder registrarse.';
 
-    if (hayError || hayCamposVacios)
+    if (hayError || hayCamposVacios) {
       this.toastPredeterminado.error(mensajeError, 'Registro inválido.');
+      this.cargando = false;
+    }
 
     if (!hayError && !hayCamposVacios) {
       this.registrarUsuarioEnFirestore();
@@ -99,18 +103,24 @@ export class RegistroComponent {
         let idUsuario = x.user?.uid;
 
         if (idUsuario != null) {
-          let usuario = new Usuario(this.nombreUsuario?.value, this.correo?.value, this.clave?.value, new Date(), idUsuario);  
-          this.limpiarFormulario();        
+          let usuario = new Usuario(this.nombreUsuario?.value, this.correo?.value, this.clave?.value, new Date(), idUsuario);
+          this.limpiarFormulario();
           this.fsUsuarioService.cargarUsuarioConIdAsignado(usuario)
             .then(
               x => {
                 this.logDeUsuario.cargarUsuarioConIdAsignado(new Log(usuario.id));
                 this.toastPredeterminado.exito('El registro se ha completado exitosamente!.', 'Registro exitoso');
                 this.router.navigate(['../home']);
+
+                setTimeout(() => {
+                  this.cargando = false;                  
+                }, 1000);
               }
             )
-        } else
+        } else {
           this.toastPredeterminado.error('Ha ocurrido un error al intentar guardar los datos del usuario registrado.', 'Ha ocurrido un error.');
+          this.cargando = false;
+        }
       })
       .catch((e) => {
         switch (e.code) {
@@ -133,6 +143,7 @@ export class RegistroComponent {
 
         if (mensajeError != '') {
           this.toastPredeterminado.error(mensajeError, 'Ha ocurrido un error!');
+          this.cargando = false;
         }
       });
   }
