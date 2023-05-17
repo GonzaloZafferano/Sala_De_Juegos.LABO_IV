@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { LogJuego } from 'src/app/models/logJuego';
+import { FirestoreLoginService } from 'src/app/services/firestoreAuthLog/firestore-auth-login.service';
+import { FirestoreUsuariosService } from 'src/app/services/firestoreUsuarios/firestore-usuarios.service';
 import { FormateoService } from 'src/app/services/formateo/formateo.service';
+import { LogJuegoService } from 'src/app/services/logsJuego/log-juego.service';
 import { ToastPredeterminadosService } from 'src/app/services/toastPredeterminados/toast-predeterminados.service';
 
 @Component({
@@ -25,12 +29,14 @@ export class MayorMenorComponent {
   deshabilitarMazo: boolean = false;
   deshabilitarBotones: boolean = false;
   textoBoton: string = '';
-  spinner : boolean = false;
-  constructor(private http: HttpClient, private formatear: FormateoService, private toast: ToastPredeterminadosService) {
+  spinner: boolean = false;
+  constructor(private http: HttpClient, private logJuego: LogJuegoService,
+    private loginService: FirestoreLoginService, private usuarioService: FirestoreUsuariosService,
+    private formatear: FormateoService, private toast: ToastPredeterminadosService) {
   }
 
   ngOnInit() {
-    this.reiniciar();
+    this.reiniciar(true);
   }
 
   obtenerCartas() {
@@ -55,7 +61,16 @@ export class MayorMenorComponent {
     });
   }
 
-  reiniciar() {
+  reiniciar(esPrimeraVez: boolean) {
+
+    if (!esPrimeraVez) {
+      if ((this.aciertos != 0 || this.empates != 0 || this.errores != 0)) {
+        if (this.aciertos > 0)
+          this.cargarDatosDeGanador();
+        this.toast.empate(`JUEGO TERMINADO! SE REINICIARAN LAS CARTAS. HAS SUMADO ${this.aciertos} PUNTOS!`, ' ');
+      } else
+        this.toast.empate(`JUEGO TERMINADO! SE REINICIARAN LAS CARTAS. NO SE HAN CONTABILIZADO PUNTOS!`, ' ');
+    }
     this.textoBoton = 'REINICIAR';
     this.indiceCarta = 0;
     this.aciertos = 0;
@@ -123,9 +138,10 @@ export class MayorMenorComponent {
     if (this.indiceCarta > 51) {
       this.deshabilitarMazo = true;
       this.deshabilitarBotones = true;
+      this.cargarDatosDeGanador();
       setTimeout(() => {
         this.textoBoton = 'JUGAR DE NUEVO';
-        this.toast.empate('JUEGO TERMINADO! SE USARON TODAS LAS CARTAS DEL MAZO.', 'JUEGO TERMINADO');        
+        this.toast.empate(`JUEGO TERMINADO! SE USARON TODAS LAS CARTAS DEL MAZO. HAS SUMADO ${this.aciertos} PUNTOS!`, 'JUEGO TERMINADO');
       }, 700);
     }
   }
@@ -150,5 +166,24 @@ export class MayorMenorComponent {
         break;
     }
     return numeroCarta;
+  }
+
+
+  async cargarDatosDeGanador() {
+    let aciertos = this.aciertos;
+    //CARGA DATOS DE JUEGO
+    let usuarioActual = this.loginService.getUsuarioActualBasico;
+    let usuarioActualNombre = '';
+    if (usuarioActual) {
+      let usuario = await this.usuarioService.traerUsuarioPorId(usuarioActual.id);
+      usuarioActualNombre = usuario?.['usuario'];
+      let logJuego = new LogJuego();
+      logJuego.fecha = new Date();
+      logJuego.idUsuario = usuarioActual.id;
+      logJuego.nombreUsuario = usuarioActualNombre;
+      logJuego.juego = 'MAYORMENOR';
+      logJuego.puntos = aciertos;
+      this.logJuego.cargarLogDeJuego(logJuego);
+    }
   }
 }

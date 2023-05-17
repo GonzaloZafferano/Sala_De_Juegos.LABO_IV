@@ -4,6 +4,10 @@ import { FormateoService } from 'src/app/services/formateo/formateo.service';
 import { ToastPredeterminadosService } from 'src/app/services/toastPredeterminados/toast-predeterminados.service';
 //El HttpClientModule se DEBE insertar en el array de imports, del APP.MODULE 
 import Swal from 'sweetalert2';
+import { LogJuegoService } from 'src/app/services/logsJuego/log-juego.service';
+import { LogJuego } from 'src/app/models/logJuego';
+import { FirestoreLoginService } from 'src/app/services/firestoreAuthLog/firestore-auth-login.service';
+import { FirestoreUsuariosService } from 'src/app/services/firestoreUsuarios/firestore-usuarios.service';
 
 @Component({
   selector: 'app-ahorcado',
@@ -31,7 +35,7 @@ export class AhorcadoComponent {
     'assets/ahorcado/imagen7.png',
   ]
 
-  constructor(private http: HttpClient, private formatear: FormateoService) {
+  constructor(private http: HttpClient, private loginService: FirestoreLoginService, private usuarioService: FirestoreUsuariosService, private formatear: FormateoService, private logJuego: LogJuegoService) {
     this.otraVez()
   }
 
@@ -109,16 +113,35 @@ export class AhorcadoComponent {
         title: 'sw-title',
         htmlContainer: 'sw-texto',
         popup: 'sw-popup',
-      },  
-    }).then((result) => {
+      },
+    }).then((result: { isConfirmed: any; }) => { //SOLO SE ESTA INDICANDO EL TIPO DE DATO
       if (result.isConfirmed) {
         this.otraVez();
       }
     });
   }
 
-  gano() {
+  async cargarDatosDeGanador() {
+    //CARGA DATOS DE JUEGO
+    let usuarioActual = this.loginService.getUsuarioActualBasico;
+    let usuarioActualNombre = '';
+    if (usuarioActual) {
+      let usuario = await this.usuarioService.traerUsuarioPorId(usuarioActual.id);
+      usuarioActualNombre = usuario?.['usuario'];
+      let logJuego = new LogJuego();
+      logJuego.fecha = new Date();
+      logJuego.idUsuario = usuarioActual.id;
+      logJuego.nombreUsuario = usuarioActualNombre;
+      logJuego.juego = 'AHORCADO';
+      logJuego.puntos = 1;
+      this.logJuego.cargarLogDeJuego(logJuego);
+    }
+  }
+
+  async gano() {
     this.bloquearBotones = true;
+    this.cargarDatosDeGanador();
+
     Swal.fire({
       title: 'HA GANADO!!!',
       text: `FELICITACIONES!!! LO HA CONSEGUIDO CON ${this.cantidadErrores} ${(this.cantidadErrores == 1 ? 'ERROR' : 'ERRORES')}!!!.`,
@@ -135,7 +158,7 @@ export class AhorcadoComponent {
         popup: 'sw-popup',
       },
       reverseButtons: true
-    }).then((result) => {
+    }).then((result: { isConfirmed: any; }) => { //SOLO SE ESTA INDICANDO EL TIPO DE DATO
       if (result.isConfirmed) {
         this.otraVez();
       }
