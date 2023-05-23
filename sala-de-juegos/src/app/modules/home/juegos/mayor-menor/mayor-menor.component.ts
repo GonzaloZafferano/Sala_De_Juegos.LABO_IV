@@ -30,6 +30,7 @@ export class MayorMenorComponent {
   deshabilitarBotones: boolean = false;
   textoBoton: string = '';
   spinner: boolean = false;
+  gano : boolean = false;
   constructor(private http: HttpClient, private logJuego: LogJuegoService,
     private loginService: FirestoreLoginService, private usuarioService: FirestoreUsuariosService,
     private formatear: FormateoService, private toast: ToastPredeterminadosService) {
@@ -37,6 +38,12 @@ export class MayorMenorComponent {
 
   ngOnInit() {
     this.reiniciar(true);
+  }
+
+  ngOnDestroy(){
+    if(this.aciertos > 0 && !this.gano){
+      this.cargarDatosDeGanador();    
+    }
   }
 
   obtenerCartas() {
@@ -73,11 +80,12 @@ export class MayorMenorComponent {
     }
     this.textoBoton = 'REINICIAR';
     this.indiceCarta = 0;
-    this.aciertos = 0;
     this.errores = 0;
     this.empates = 0;
     this.rutaReves = this.rutaCartaRevesEscondida;
     this.rotar = true;
+    this.aciertos = 0;
+    this.gano = false;
     this.rotarActual = !this.rotarActual;
     this.obtenerCartas();
     this.deshabilitarMazo = true;
@@ -142,10 +150,11 @@ export class MayorMenorComponent {
       setTimeout(() => {
         this.textoBoton = 'JUGAR DE NUEVO';
         this.toast.empate(`JUEGO TERMINADO! SE USARON TODAS LAS CARTAS DEL MAZO. HAS SUMADO ${this.aciertos} PUNTOS!`, 'JUEGO TERMINADO');
+        this.gano = true;
       }, 700);
     }
   }
-
+ 
   obtenerNumeroDeCarta(carta: any) {
     let numeroCarta;
     switch (carta) {

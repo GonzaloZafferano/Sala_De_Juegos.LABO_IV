@@ -1,0 +1,175 @@
+.vencido {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.vivo {
+    display: none;
+}
+
+.visible {
+    opacity: 1;
+}
+
+
+.alturaKi {
+    height: 200px !important;
+}
+
+.golpe {
+    background-color: rgb(179, 67, 67);
+}
+
+.contenedor-villanos {
+    width: 1000px;
+    height: 500px;
+    /* border: 1px solid black; */
+    border-bottom: 2px solid green;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+}
+
+.cell-aparece {
+    background-color: red;
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation: slideDown 4s ease-in-out forwards;
+}
+
+.cell {
+    display: none;
+}
+
+.imagen-cell {
+    height: 100%;
+    width: 100%;
+}
+
+@keyframes slideDown {
+    0% {
+        top: -100%;
+    }
+
+    100% {
+        top: 0;
+    }
+}
+
+.contenedor-villanos-posicion {
+    position: relative;
+    transition: transform ease 0.05s;
+}
+
+.contenedor-general{
+    width: 60%;
+}
+.explosion-campo-villanos {
+    pointer-events: none;
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    z-index: 9999;
+}
+
+.explosion-invisible{
+    display: none !important;
+}
+
+.villano {
+    width: 100px;
+    height: 100px;
+    /* border: 1px solid black; */
+    position: absolute;
+    user-select: none;
+}
+
+.imagen-villano {
+    width: 100px;
+}
+
+.fondo{
+    background-image: url('/assets/batalladragonball/fondo.jpg');
+    background-repeat: no-repeat;
+   background-size: cover;
+}
+
+.contenedor-datos{
+    width: 25%;
+}
+
+.heroe-invisible{
+    display: none !important;
+}
+
+.contenedor-heroe {
+    width: 1000px;
+    height: 250px;
+    /* border: 1px solid black; */
+    position: relative;
+    margin: 0 auto;
+    user-select: none;
+    transition: transform 0.1s ease;
+}
+
+.contenedor-heroe-posicion {
+    width: 200px;
+    height: 200px;
+    /* border: 1px solid black; */
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    user-select: none;
+}
+
+.imagen-heroe {
+    height: 100px;
+    user-select: none;
+}
+
+.explosion {
+    display: none;
+    width: 50px !important;
+    height: 50px !important;
+    /* border: 1px solid black; */
+    position: absolute;
+    user-select: none;
+}
+
+.imagen-explosion {
+    padding: 0px;
+    margin: 0px;
+    height: 50px !important;
+    width: 50px !important;
+    user-select: none;
+}
+
+
+.gohan {
+    display: none;
+}
+
+.gohan-aparece {
+    display: flex;
+    justify-content: center;    
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    animation: slideUp 1s ease-in-out forwards;
+}
+
+@keyframes slideUp {
+    0% {
+        bottom: -100%;
+    }
+
+    100% {
+        bottom: 0;
+    }
+}

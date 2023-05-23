@@ -1,0 +1,23 @@
+.opcion {
+    background-color: white;
+    color: green !important;
+    border-radius: 50px;
+    width: 50% !important;
+}
+
+.opcion:hover {
+    background-color: green;
+    color: white !important;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.fd-column {
+    flex-direction: column !important;
+}
+
+.imagen {
+    width: 350px;
+    border-radius: 20px;
+    align-self: center;
+}

@@ -24,6 +24,9 @@ export class LoginGuard implements CanActivate, CanDeactivate<unknown> {
     currentRoute: ActivatedRouteSnapshot,
     currentState: RouterStateSnapshot,
     nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+      if(this.firestoreLogin.usuarioAceptoTeminos)      
     return true;
+    else
+    return false;
   }
 }

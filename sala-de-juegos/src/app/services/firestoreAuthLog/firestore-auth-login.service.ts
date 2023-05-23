@@ -12,6 +12,7 @@ export class FirestoreLoginService {
   usuarioActual: any;
   //Esta variable me permite controlar en tiempo real si hay un usuario logueado.
   usuarioEstaLogueado : boolean = false;
+  public usuarioAceptoTeminos : boolean = false;
 
   constructor(private auth: AngularFireAuth, private localStorage: LocalStorageService, private route : Router) {
     this.suscripcion = this.auth.authState.subscribe(usuario => {

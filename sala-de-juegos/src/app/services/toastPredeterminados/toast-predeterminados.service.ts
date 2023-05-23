@@ -38,7 +38,7 @@ export class ToastPredeterminadosService {
   perdio(mensaje : string = '', titulo : string = ''){
     const errorOptions = {
       toastClass: 'toast-custom-perdio',
-      timeOut: 2000,
+      timeOut: 4000,
       extendedTimeOut: 1000,
       enableHtml: true,
       positionClass: 'toast-custom-juego-position',
@@ -52,7 +52,7 @@ export class ToastPredeterminadosService {
   gano(mensaje : string = '', titulo : string = ''){
     const successOptions = {
       toastClass: 'toast-custom-gano',
-      timeOut: 2000,
+      timeOut: 5000,
       extendedTimeOut: 1000,
       enableHtml: true,
       positionClass: 'toast-custom-juego-position',     

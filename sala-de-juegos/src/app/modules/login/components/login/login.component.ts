@@ -22,6 +22,8 @@ export class LoginComponent {
   constructor(private logDeUsuario: LogsDeUsuarioService, private router: Router, private firestoreLogin: FirestoreLoginService, private fsUsuarioService: FirestoreUsuariosService, private toastPredeterminado: ToastPredeterminadosService) { }
 
   ngOnInit(): void {
+    this.firestoreLogin.usuarioAceptoTeminos = false;
+
     this.form = new FormGroup
       (
         {
@@ -101,7 +103,10 @@ export class LoginComponent {
 
                 this.logDeUsuario.cargarUsuarioConIdAsignado(new Log(this.usuario.id));
                 this.toastPredeterminado.exito(`Bienvenido/a ${this.usuario.usuario}!`, 'Login exitoso!');
+
+                this.firestoreLogin.usuarioAceptoTeminos = true;
                 this.router.navigate(['../home']);
+
                 setTimeout(() => {
                   this.cargando = false;
                 }, 1000);

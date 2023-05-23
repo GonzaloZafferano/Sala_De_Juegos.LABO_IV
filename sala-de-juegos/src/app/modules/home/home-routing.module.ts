@@ -5,6 +5,8 @@ import { SalaChatComponent } from './components/sala-chat/sala-chat.component';
 import { AhorcadoComponent } from './juegos/ahorcado/ahorcado.component';
 import { MayorMenorComponent } from './juegos/mayor-menor/mayor-menor.component';
 import { BienvenidoComponent } from './components/bienvenido/bienvenido.component';
+import { PreguntadosComponent } from './juegos/preguntados/preguntados.component';
+import { BatallaDragonBallComponent } from './juegos/batalla-dragon-ball/batalla-dragon-ball.component';
 
 const routes: Routes = [ 
   {
@@ -14,6 +16,8 @@ const routes: Routes = [
       { path: 'chat', component: SalaChatComponent }, //Este se cargara dentro del componente padre 'HomeComponent'
       { path: 'ahorcado', component: AhorcadoComponent }, //Este se cargara dentro del componente padre 'HomeComponent'
       { path: 'mayor-menor', component: MayorMenorComponent }, //Este se cargara dentro del componente padre 'HomeComponent'
+      { path: 'preguntados', component: PreguntadosComponent }, //Este se cargara dentro del componente padre 'HomeComponent'
+      { path: 'batallaDragonBall', component: BatallaDragonBallComponent }, //Este se cargara dentro del componente padre 'HomeComponent'
     ]
   },
 ];

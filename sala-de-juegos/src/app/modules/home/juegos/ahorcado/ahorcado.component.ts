@@ -96,6 +96,8 @@ export class AhorcadoComponent {
     return this.cantidadLetrasAcertadas == this.palabra.length;
   }
 
+
+
   perdio() {
     this.bloquearBotones = true;
     Swal.fire({

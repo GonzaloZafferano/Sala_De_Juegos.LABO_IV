@@ -1,0 +1,22 @@
+<div class="d-flex justify-content-center">
+    <h3 class="fw-bold fs-3">Juego: <span class="fs-2">PREGUNTADOS</span> </h3>
+</div>
+<h3 class="text text-center fw-bold">¿Cuál es este Digimon?</h3>
+<div class="container d-flex justify-content-center fd-column">
+    <div *ngIf="spinner; else pregunta" class="d-flex justify-content-center" style="height: 500px !important; align-items: center; height: 100%;">
+        <span class="m-3 fs-3 fw-bold">Cargando pregunta...</span>
+        <div class="spinner-border text-danger mx-5" style="align-self: center; scale: 1.2;"></div>
+    </div>
+        <ng-template #pregunta> 
+        <div class="d-flex justify-content-center fd-column" style="height: 350px !important;">
+            <img class="imagen" [src]="digimones[indiceCorrecto]?.img" alt="imagen digimon">
+        </div>
+        <div class=" fd-column">
+            <div class="m-3 p-1 d-flex justify-content-center" *ngFor="let digimon of digimones; let indice = index">
+                <div class="opcion" (click)="eleccion(indice)">
+                    <p class="text fs-3 fw-bold px-3">{{indice+1}} - {{digimon?.name}}</p>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    </div>

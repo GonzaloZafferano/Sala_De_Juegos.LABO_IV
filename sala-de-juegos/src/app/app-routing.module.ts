@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: '', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule), canActivate : [HomeGuard] },
   { path: 'quien-soy', loadChildren: () => import('./modules/quien-soy/quien-soy.module').then(m => m.QuienSoyModule),  canActivate : [QuienSoyGuard]  },
   { path: 'registro', loadChildren: () => import('./modules/registro/registro.module').then(m => m.RegistroModule),  canActivate : [RegistroGuard]  },
-  { path: 'login', loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule), canActivate : [LoginGuard] },
+  { path: 'login', loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule), canActivate : [LoginGuard], canDeactivate:[LoginGuard] },
   
 ];
 
