@@ -15,7 +15,7 @@
 
 .tarjeta-presentacion div{
     margin: 30px auto !important;
-    width: 600px;
+    width: 100%;
     border-radius: 30px;
 }
 
@@ -24,7 +24,7 @@
 }
 
 .texto{
-    word-wrap: break-word;
+    word-break: keep-all;
 }
 
 .borde{

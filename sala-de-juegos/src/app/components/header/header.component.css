@@ -2,3 +2,10 @@
     height: 55px;
     border-radius: 30px;
 }
+
+
+@media screen and (max-width: 550px) {
+    .texto{
+        font-size: 16px !important;
+    }
+}

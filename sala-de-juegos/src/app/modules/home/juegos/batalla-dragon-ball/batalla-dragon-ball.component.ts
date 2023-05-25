@@ -80,7 +80,13 @@ export class BatallaDragonBallComponent {
   }
 
   posicionUnica() {
-    return { numero: this.numero += 1, y: this.y += 100, x: Math.floor(Math.random() * (900 - 0 + 1)) + 0 }
+    if (this.contenedorVillanos) {
+      const containerRect: DOMRect = this.contenedorVillanos?.nativeElement.getBoundingClientRect();
+      let contenedorAncho = containerRect.width;
+      let contenedorAlto = containerRect.height;
+      return { numero: this.numero += 1, y: this.y += contenedorAlto / 5, x: Math.floor(Math.random() * (contenedorAncho*0.9))}
+    }
+    return null;
   }
 
   @ViewChild('contenedor', { static: true }) contenedor: ElementRef<HTMLDivElement> | undefined;
@@ -88,24 +94,10 @@ export class BatallaDragonBallComponent {
   @ViewChild('explosion', { static: false }) explosion: ElementRef | undefined;
   @ViewChild('cellDiv', { static: false }) cellDiv: ElementRef | undefined;
   @ViewChild('explosionVillanos', { static: false }) explosionVillanos: ElementRef | undefined;
-
-
+  @ViewChild('contenedorVillanos', { static: false }) contenedorVillanos: ElementRef | undefined;
 
   ngAfterViewInit() {
-    if (this.protagonista) {
-      const buttonRect: DOMRect = this.protagonista.nativeElement.getBoundingClientRect();
-      this.altoBoton = buttonRect.height;
-      this.anchoBoton = buttonRect.width;
 
-      if (this.contenedor) {
-
-        const containerRect: DOMRect = this.contenedor.nativeElement.getBoundingClientRect();
-        this.contenedorAncho = containerRect.width;
-        this.contenedorAlto = containerRect.height;
-        this.buttonPositionX = buttonRect.left - containerRect.left;
-        this.buttonPositionY = buttonRect.top - containerRect.top;
-      }
-    }
   }
 
   comenzar() {
@@ -145,11 +137,16 @@ export class BatallaDragonBallComponent {
   }
 
   moverACell() {
-    let x = Math.floor(Math.random() * (900 - 0 + 1)) + 0;
-    let y = Math.floor(Math.random() * (385 - 0 + 1)) + 0;
-    if (this.cellDiv) {
-      this.cellDiv.nativeElement.style.display = 'inline-block';
-      this.cellDiv.nativeElement.style.transform = `translate(${x}px, ${y}px)`;
+    if (this.contenedorVillanos) {
+      const containerRect: DOMRect = this.contenedorVillanos?.nativeElement.getBoundingClientRect();
+      let contenedorAncho = containerRect.width;
+      let contenedorAlto = containerRect.height;
+      let x = Math.floor(Math.random() * (contenedorAncho * 0.85));
+      let y = Math.floor(Math.random() * (contenedorAlto * 0.85));
+      if (this.cellDiv) {
+        this.cellDiv.nativeElement.style.display = 'inline-block';
+        this.cellDiv.nativeElement.style.transform = `translate(${x}px, ${y}px)`;
+      }
     }
   }
   elevarKI() {
@@ -173,41 +170,44 @@ export class BatallaDragonBallComponent {
 
   ataqueEnemigo() {
     if (this.explosion) {
+      if (this.contenedor) {
+        const containerRect: DOMRect = this.contenedor.nativeElement.getBoundingClientRect();
+        let contenedorAncho = containerRect.width;
+        let contenedorAlto = containerRect.height;
 
-      let x = Math.floor(Math.random() * (965 - 0 + 1)) + 0;
-      let y = Math.floor(Math.random() * (220 - 0 + 1)) + 0;
-      this.explosion.nativeElement.style.display = 'inline-block';
-      this.explosion.nativeElement.style.transform = `translate(${x}px, ${y}px)`;
+        let x = Math.floor(Math.random() * (contenedorAncho * 0.95));
+        let y = Math.floor(Math.random() * (contenedorAlto * 0.9));
+        this.explosion.nativeElement.style.display = 'inline-block';
+        this.explosion.nativeElement.style.transform = `translate(${x}px, ${y}px)`;
 
-      if ((x + 50) >= this.buttonPositionX + 80 &&
-        (x) <= (this.buttonPositionX + 100) &&
-        (y + 50) >= this.buttonPositionY + 120 && //y > 100
-        (y) <= (this.buttonPositionY + 180)
-      ) {
-        if (!this.cargaKi) {
+        if ((x + 50) >= this.buttonPositionX + 80 &&
+          (x) <= (this.buttonPositionX + 100) &&
+          (y + 50) >= this.buttonPositionY + 120 && //y > 100
+          (y) <= (this.buttonPositionY + 180)
+        ) {
+          if (!this.cargaKi) {
 
-          this.golpe = true;
-          this.vida -= 20;
+            this.golpe = true;
+            this.vida -= 20;
 
-          if (this.vida <= 0 && !this.mensajeVisible) {
-            if(this.puntos > 0){
-              this.cargarGanador();
+            if (this.vida <= 0 && !this.mensajeVisible) {
+              if (this.puntos > 0) {
+                this.cargarGanador();
+              }
+              this.mensajeVisible = true;
+              this.imagenProtagonista = 'assets/batalladragonball/gohan2V.png';
+              this.toast.perdio(`Te han vencido! <br>Sumaste ${this.puntos} puntos!<br>Presiona en 'Comenzar' para intentarlo de nuevo!`, ' ');
+              setTimeout(() => {
+                this.finJuego();
+              }, 1000);
             }
-            this.mensajeVisible = true;
-            this.imagenProtagonista = 'assets/batalladragonball/gohan2V.png';
-            this.toast.perdio(`Te han vencido! Sumaste ${this.puntos} puntos!<br>Presiona en 'Comenzar' para intentarlo de nuevo!`, ' ');
             setTimeout(() => {
-              this.finJuego();
-            }, 1000);
+              this.golpe = false;
+            }, 300);
           }
-          setTimeout(() => {
-            this.golpe = false;
-          }, 300);
         }
       }
     }
-
-
   }
 
   @HostListener('window:keydown', ['$event'])
@@ -218,18 +218,38 @@ export class BatallaDragonBallComponent {
 
 
   moverProtagonista(event: KeyboardEvent) {
+    if (this.protagonista) {
+      const buttonRect: DOMRect = this.protagonista.nativeElement.getBoundingClientRect();
+      this.altoBoton = buttonRect.height;
+      this.anchoBoton = buttonRect.width;
+      if (this.contenedor) {
+
+        const containerRect: DOMRect = this.contenedor.nativeElement.getBoundingClientRect();
+        this.contenedorAncho = containerRect.width;
+        this.contenedorAlto = containerRect.height;
+        this.buttonPositionX = buttonRect.left - containerRect.left;
+        this.buttonPositionY = buttonRect.top - containerRect.top;
+
+   
+      }
+    }
+
     let pasos = this.steps;
+  
     switch (event.key) {
-      case 'ArrowUp':
+      case 'w':
         this.buttonPositionY = Math.max(-100, this.buttonPositionY - pasos);
         break;
-      case 'ArrowDown':
+      case 's':
         this.buttonPositionY = Math.min(this.contenedorAlto - this.altoBoton, this.buttonPositionY + pasos);
         break;
-      case 'ArrowLeft':
-        this.buttonPositionX = Math.max(0, this.buttonPositionX - pasos);
+      case 'a':
+        if (this.buttonPositionX > this.contenedorAncho) {
+          this.buttonPositionX = 0;
+        } else
+          this.buttonPositionX = Math.max(0, this.buttonPositionX - pasos);
         break;
-      case 'ArrowRight':
+      case 'd':
         this.buttonPositionX = Math.min(this.contenedorAncho - this.anchoBoton, this.buttonPositionX + pasos);
         break;
       default:
@@ -250,7 +270,7 @@ export class BatallaDragonBallComponent {
 
       this.finExplosiones();
       this.finMovimientoCellJr();
-      this.toast.gano('Felicitaciones! Has derrotado a los Cell Jr!! Sin embargo...', ' ');
+      this.toast.gano('Felicitaciones! <br>Has derrotado a los Cell Jr!! <br>Sin embargo...', ' ');
 
       setTimeout(() => {
         this.enemigos = [];
@@ -308,7 +328,7 @@ export class BatallaDragonBallComponent {
 
         this.cell.vivo = false;
         this.finJuego();
-        this.toast.gano(`Felicidades! Haz derrotado a Cell y salvaste la tierra! <br>Sumaste ${this.puntos} puntos!`, ' ');
+        this.toast.gano(`Felicitaciones!! <br>Haz derrotado a Cell y salvaste la tierra! <br>Sumaste ${this.puntos} puntos!`, ' ');
       }
     }
   }

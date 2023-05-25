@@ -13,6 +13,7 @@ export class HomeGuard implements CanActivate, CanDeactivate<unknown>, CanLoad {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  
       if (this.firestoreLogin.getUsuarioEstaLogueado) 
         return true;
       

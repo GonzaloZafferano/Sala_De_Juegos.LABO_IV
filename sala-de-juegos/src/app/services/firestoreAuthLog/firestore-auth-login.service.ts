@@ -21,7 +21,7 @@ export class FirestoreLoginService {
         this.localStorage.guardarItem('usuario', { id: usuario.uid, mail: usuario.email });
         this.usuarioEstaLogueado = true;    
       }else{
-        this.route.navigateByUrl('login');
+        //this.route.navigateByUrl('login');
       }
     });
   }

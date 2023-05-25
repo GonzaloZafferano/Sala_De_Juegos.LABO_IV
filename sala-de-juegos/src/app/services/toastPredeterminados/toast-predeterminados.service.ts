@@ -35,10 +35,10 @@ export class ToastPredeterminadosService {
     errorOptions);
   }
 
-  perdio(mensaje : string = '', titulo : string = ''){
+  perdio(mensaje : string = '', titulo : string = '', timeOut : number = 4000){
     const errorOptions = {
       toastClass: 'toast-custom-perdio',
-      timeOut: 4000,
+      timeOut: timeOut,
       extendedTimeOut: 1000,
       enableHtml: true,
       positionClass: 'toast-custom-juego-position',
@@ -49,10 +49,10 @@ export class ToastPredeterminadosService {
     errorOptions);
   }
 
-  gano(mensaje : string = '', titulo : string = ''){
+  gano(mensaje : string = '', titulo : string = '', timeOut : number = 5000){
     const successOptions = {
       toastClass: 'toast-custom-gano',
-      timeOut: 5000,
+      timeOut: timeOut,
       extendedTimeOut: 1000,
       enableHtml: true,
       positionClass: 'toast-custom-juego-position',     

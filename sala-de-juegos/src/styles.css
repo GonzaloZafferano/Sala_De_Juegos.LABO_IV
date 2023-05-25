@@ -28,21 +28,24 @@
 
 .toast-custom-juego-position {
     position: fixed;
-    bottom: 100px !important;
-    left: 30%;
-    width: 40%;
-    height: 300px;
+    top: 10% !important;
+    margin: auto auto;
+    width: 100%;
+    height: auto;
     font-size: 3em;
-    text-align: center;
+    text-align: center;  
+    display: flex;
+    justify-content: center;
 }
 
 .toast-custom-perdio {
     margin: 5px;
     background-color: #d17575;
+    width: auto;
     color: #ffffff;
     font-size: 1.05em;
     font-weight: bold;
-    padding: 15px;
+    padding: 5px;
     border-radius: 20px;
 }
 
@@ -52,7 +55,7 @@
     color: #ffffff;
     font-size: 1.05em;
     font-weight: bold;
-    padding: 15px;
+    padding: 5px;
     border-radius: 20px;
 }
 

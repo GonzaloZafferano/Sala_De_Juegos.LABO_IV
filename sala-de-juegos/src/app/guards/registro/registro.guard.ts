@@ -12,6 +12,7 @@ export class RegistroGuard implements CanActivate, CanDeactivate<unknown> {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+
       if (!this.firestoreLogin.getUsuarioEstaLogueado) {
         return true;
       }

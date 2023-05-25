@@ -105,6 +105,7 @@ export class LoginComponent {
                 this.toastPredeterminado.exito(`Bienvenido/a ${this.usuario.usuario}!`, 'Login exitoso!');
 
                 this.firestoreLogin.usuarioAceptoTeminos = true;
+      
                 this.router.navigate(['../home']);
 
                 setTimeout(() => {

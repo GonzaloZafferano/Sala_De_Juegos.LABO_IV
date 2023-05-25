@@ -19,11 +19,14 @@ export class PreguntadosComponent {
   randomC: number = -1;
   randomD: number = -1;
   suscripcion: any;
+  aciertos: number = 0;
+  errores: number = 0;
   digimones: any[] = [];
   indiceCorrecto: number = -1;
   spinner: boolean = false;
+  bloquear : boolean = false;
   constructor(private http: HttpClient, private toast: ToastPredeterminadosService,
-    private router : Router,
+    private router: Router,
     private loginService: FirestoreLoginService,
     private usuarioService: FirestoreUsuariosService,
     private LogJuegoService: LogJuegoService) { }
@@ -38,7 +41,7 @@ export class PreguntadosComponent {
     // });
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
 
   }
   obtenerDigimones() {
@@ -78,6 +81,7 @@ export class PreguntadosComponent {
     this.randomC = -1;
     this.randomD = -1;
     this.digimones = [];
+    this.bloquear = false;
   }
 
   obtenerRandom(lista: any[]) {
@@ -93,19 +97,41 @@ export class PreguntadosComponent {
   }
 
   eleccion(indiceElegido: any) {
+    let finJuego = false;
     if (this.indiceCorrecto == indiceElegido) {
-      this.toast.gano('Felicidades!! Ha acertado! <br>Sumo +1 punto!', ' ');
-      this.cargarGanador();
+      this.aciertos++;
+
+      if (this.aciertos == 5) {
+        this.toast.gano('CORRECTO!! <br>Ha acertado 5 veces! <br>Suma +5 puntos!', ' ');
+        this.cargarGanador();
+        finJuego = true;
+      }
+      else {
+        this.toast.gano('CORRECTO!!', ' ',1000);
+      }
     } else {
-      this.toast.perdio(`Ha fallado!! La respuesta es '${this.digimones[this.indiceCorrecto].name}'. <br>Reintente nuevamente.!`, ' ');
+      this.errores++;
+      if (this.errores == 3) {
+        this.toast.perdio(`INCORRECTO!! <br>La respuesta es '${this.digimones[this.indiceCorrecto].name}' <br>Llego a 3 errores! <br>FIN DEL JUEGO.`, ' ');
+        finJuego = true;
+      } else {
+        this.toast.perdio(`INCORRECTO!! <br>La respuesta es '${this.digimones[this.indiceCorrecto].name}'.`, ' ',1500);
+      }
     }
 
     setTimeout(() => {
-      this.reintentar();
+      if (!finJuego)
+        this.reintentar();
+        else
+        this.bloquear = true;
     }, 1000);
   }
 
-
+  reiniciar() {
+    this.errores = 0;
+    this.aciertos = 0;
+    this.reintentar();
+  }
   async cargarGanador() {
     //DATOS DE GANADOR
     let usuarioActual = this.loginService.getUsuarioActualBasico;
@@ -118,7 +144,7 @@ export class PreguntadosComponent {
       logJuego.idUsuario = usuarioActual.id;
       logJuego.nombreUsuario = usuarioActualNombre;
       logJuego.juego = 'PREGUNTADOS';
-      logJuego.puntos = 1;
+      logJuego.puntos = 5;
       this.LogJuegoService.cargarLogDeJuego(logJuego);
     }
 

@@ -57,7 +57,7 @@ export class AhorcadoComponent {
     this.spinner = true;
     //https://random-word-api.herokuapp.com/word?number=1&lang=es
     //https://clientes.api.greenborn.com.ar/public-random-word?c=1
-    this.suscripcion = this.http.get('https://clientes.api.greenborn.com.ar/public-random-word').subscribe(x => {
+    this.suscripcion = this.http.get('https://clientes.api.greenborn.com.ar/public-random-word?l=8').subscribe(x => {
 
       //Obtengo la palabra
       let palabra = (x as string[])[0];

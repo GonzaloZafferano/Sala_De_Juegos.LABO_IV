@@ -3,5 +3,11 @@
     font-family: 'Comic Neue', cursive;
     font-family: 'Roboto', sans-serif;
     font-family: 'Tourney', cursive;
-    font-size: 8em !important;
+    font-size: 10vw !important;
+}
+
+@media screen and (max-width: 760px) {
+    .letra{
+        font-size: 5vw !important;
+    }
 }

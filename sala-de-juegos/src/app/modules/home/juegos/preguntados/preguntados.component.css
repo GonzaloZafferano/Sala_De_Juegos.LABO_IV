@@ -2,7 +2,7 @@
     background-color: white;
     color: green !important;
     border-radius: 50px;
-    width: 50% !important;
+    width: 100% !important;
 }
 
 .opcion:hover {
@@ -20,4 +20,9 @@
     width: 350px;
     border-radius: 20px;
     align-self: center;
+}
+
+.bloqueado{
+    pointer-events: none;
+    opacity: 0.5;
 }

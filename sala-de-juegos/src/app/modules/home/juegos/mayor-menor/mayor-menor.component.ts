@@ -74,9 +74,9 @@ export class MayorMenorComponent {
       if ((this.aciertos != 0 || this.empates != 0 || this.errores != 0)) {
         if (this.aciertos > 0)
           this.cargarDatosDeGanador();
-        this.toast.empate(`JUEGO TERMINADO! SE REINICIARAN LAS CARTAS. HAS SUMADO ${this.aciertos} PUNTOS!`, ' ');
+        this.toast.empate(`JUEGO TERMINADO! <br>SE REINICIARAN LAS CARTAS. <br>HAS SUMADO ${this.aciertos} PUNTOS!`, ' ');
       } else
-        this.toast.empate(`JUEGO TERMINADO! SE REINICIARAN LAS CARTAS. NO SE HAN CONTABILIZADO PUNTOS!`, ' ');
+        this.toast.empate(`JUEGO TERMINADO! <br>SE REINICIARAN LAS CARTAS. <br>NO SE HAN CONTABILIZADO PUNTOS!`, ' ');
     }
     this.textoBoton = 'REINICIAR';
     this.indiceCarta = 0;
@@ -119,11 +119,11 @@ export class MayorMenorComponent {
         }
         else if (numeroEscondido > valorActual) {
           this.aciertos++;
-          this.toast.gano('ADIVINO!', ' ');
+          this.toast.gano('CORRECTO!', ' ',1000);
         }
         else {
           this.errores++;
-          this.toast.perdio('NO ACERTO!', ' ');
+          this.toast.perdio('INCORRECTO!', ' ',1000);
         }
       } else {
         if (numeroEscondido == valorActual) {
@@ -132,11 +132,11 @@ export class MayorMenorComponent {
         }
         else if (numeroEscondido < valorActual) {
           this.aciertos++;
-          this.toast.gano('ADIVINO!', ' ');
+          this.toast.gano('CORRECTO!', ' ',1000);
         }
         else {
           this.errores++;
-          this.toast.perdio('NO ACERTO!', ' ');
+          this.toast.perdio('INCORRECTO!', ' ',1000);
         }
       }
       this.deshabilitarMazo = false;
@@ -149,7 +149,7 @@ export class MayorMenorComponent {
       this.cargarDatosDeGanador();
       setTimeout(() => {
         this.textoBoton = 'JUGAR DE NUEVO';
-        this.toast.empate(`JUEGO TERMINADO! SE USARON TODAS LAS CARTAS DEL MAZO. HAS SUMADO ${this.aciertos} PUNTOS!`, 'JUEGO TERMINADO');
+        this.toast.empate(`JUEGO TERMINADO! <br>SE USARON TODAS LAS CARTAS DEL MAZO. <br>HAS SUMADO ${this.aciertos} PUNTOS!`, 'JUEGO TERMINADO');
         this.gano = true;
       }, 700);
     }

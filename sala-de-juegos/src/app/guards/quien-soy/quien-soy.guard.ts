@@ -15,7 +15,7 @@ export class QuienSoyGuard implements CanActivate, CanDeactivate<unknown> {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       if (this.firestoreLogin.getUsuarioEstaLogueado) 
         return true;
-      
+
       this.router.navigate(['/login']);
       return false;
   }

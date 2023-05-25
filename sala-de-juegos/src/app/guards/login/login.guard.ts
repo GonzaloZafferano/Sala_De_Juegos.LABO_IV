@@ -13,7 +13,8 @@ export class LoginGuard implements CanActivate, CanDeactivate<unknown> {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (!this.firestoreLogin.getUsuarioEstaLogueado) {
+
+      if (!this.firestoreLogin.getUsuarioEstaLogueado) {
       return true;
     }
     this.router.navigate(['']);
@@ -23,10 +24,7 @@ export class LoginGuard implements CanActivate, CanDeactivate<unknown> {
     component: unknown,
     currentRoute: ActivatedRouteSnapshot,
     currentState: RouterStateSnapshot,
-    nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if(this.firestoreLogin.usuarioAceptoTeminos)      
-    return true;
-    else
-    return false;
+    nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {    
+      return true;      
   }
 }

@@ -110,6 +110,7 @@ export class RegistroComponent {
               x => {
                 this.logDeUsuario.cargarUsuarioConIdAsignado(new Log(usuario.id));
                 this.toastPredeterminado.exito('El registro se ha completado exitosamente!.', 'Registro exitoso');
+             
                 this.router.navigate(['../home']);
 
                 setTimeout(() => {

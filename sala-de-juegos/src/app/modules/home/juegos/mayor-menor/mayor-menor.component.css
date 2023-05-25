@@ -1,5 +1,4 @@
-.contenedor-cartas{
-    width: 30%;
+.contenedor-cartas{   
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -29,7 +28,6 @@ margin: 20px;
 
 .jerarquia{
   background-color: rgb(212, 243, 215);
-  width: 40vw;
   border-radius: 30px;
   border: solid 1px rgb(69, 141, 69);
   box-shadow: 10px 10px 50px 0 rgba(255, 6, 6, 0.2);
