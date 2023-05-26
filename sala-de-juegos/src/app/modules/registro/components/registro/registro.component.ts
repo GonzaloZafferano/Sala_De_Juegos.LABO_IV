@@ -26,7 +26,7 @@ export class RegistroComponent {
         {
           nombreUsuario: new FormControl('',
             {
-              validators: [Validators.pattern('^[a-zA-Z]+$')],
+              validators: [Validators.pattern('^[a-zA-Z1-9]+$')],
               asyncValidators: validarSiUsuarioExisteAsync(this.fsUsuarioService),
               updateOn: 'blur'
             }

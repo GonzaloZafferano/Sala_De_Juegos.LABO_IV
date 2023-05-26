@@ -166,7 +166,7 @@ export class LoginComponent {
       clave: '111111'
     },
     {
-      correo: 'nicolas@prueba.com',
+      correo: 'test@test.com',
       clave: '111111'
     },
     {

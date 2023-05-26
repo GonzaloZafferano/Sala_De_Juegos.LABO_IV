@@ -112,7 +112,7 @@ export class PreguntadosComponent {
     } else {
       this.errores++;
       if (this.errores == 3) {
-        this.toast.perdio(`INCORRECTO!! <br>La respuesta es '${this.digimones[this.indiceCorrecto].name}' <br>Llego a 3 errores! <br>FIN DEL JUEGO.`, ' ');
+        this.toast.perdio(`INCORRECTO!! <br>La respuesta es '${this.digimones[this.indiceCorrecto].name}' <br>Tiene 3 errores! <br>FIN DEL JUEGO.`, ' ');
         finJuego = true;
       } else {
         this.toast.perdio(`INCORRECTO!! <br>La respuesta es '${this.digimones[this.indiceCorrecto].name}'.`, ' ',1500);

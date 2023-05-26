@@ -25,8 +25,10 @@
             <div class="d-flex justify-content-between">
                 <button [disabled]="deshabilitarBotones" class="btn btn-primary  fs-3 fw-bold boton-juego"
                     (click)="adivinar(1)">Mayor</button>
-                <img [src]="rutaReves" class="carta" [ngClass]="{'rotar-atras': rotar}" height="250px" width="210px"
+                <div style="pointer-events: none;">
+                    <img [src]="rutaReves" class="carta" [ngClass]="{'rotar-atras': rotar}" height="250px" width="210px"
                     alt="carta-reves">
+                </div>
                 <button [disabled]="deshabilitarBotones" class="btn btn-danger fs-3 fw-bold boton-juego"
                     (click)="adivinar(0)">Menor</button>
 
@@ -43,8 +45,10 @@
                 <div class="spinner-border text-light mx-5" style="align-self: center; scale: 1.2;"></div>
             </div>
             <ng-template #carta>
-                <img [src]="cartaActual?.image" height="250px" class="carta" [ngClass]="{'rotar-atras': rotarActual}"
+                <div style="pointer-events: none;">
+                    <img [src]="cartaActual?.image" height="250px" class="carta" [ngClass]="{'rotar-atras': rotarActual}"
                     width="210px" alt="carta">
+                </div>
             </ng-template>
         </div>
     </div>

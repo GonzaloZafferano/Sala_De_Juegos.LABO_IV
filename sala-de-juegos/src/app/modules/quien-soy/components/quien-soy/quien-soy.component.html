@@ -1,21 +1,38 @@
 <div class="fondo-app-unico">
     <div class="row w-100 d-flex justify-content-center ml-0">
-        <div class="col col-12 col-lg-6 d-flex justify-content-center" style="margin: 0 auto;">
-            <div class="tarjeta-presentacion">
-                <div class="card sombra-luminosa fondo-cards mt-5 pt-5">
-                    <img class="card-img-top rounded-circle imagen" src="assets/imagenes/Foto.jpg" alt="Imagen alumno">
-                    <div class="card-body">
-                        <h5 class="card-title fs-1 texto-luminoso text-light">Gonzalo Zafferano</h5>
-                        <h6 class="card-subtitle mb-2 text-muted fs-2">4to B</h6>
-                        <p class="card-text d-flex fs-3 text-light">Hola! Soy Gonzalo, te doy la bienvenida a ZETA-G!                     
-                        </p>
+        <div class="col col-12 col-lg-6 d-flex justify-content-center" style="margin: 0 auto; min-height: 200px;">
+            <div *ngIf="spinner; else datos" class="d-flex justify-content-center"
+                style="align-items: center; height: 100% !important;">
+                <span class="m-3 fs-3 fw-bold text-light">Cargando...</span>
+                <div class="spinner-border text-light" style="align-self: center; scale: 1.2;"></div>
+            </div>
+            <ng-template #datos>
+                <div class="tarjeta-presentacion">
+                    <div class="card sombra-luminosa fondo-cards mt-5 pt-5">
+                        <img class="card-img-top rounded-circle imagen" [src]="ruta" alt="Imagen alumno">
+                        <div class="card-body">
+                            <h5 class="card-title fs-1 fw-bold texto-luminoso text-light">Gonzalo Zafferano</h5>
+                            <h6 class="card-subtitle mb-2 text-muted fs-2">4to B</h6>
+                            <p class="card-text fs-3 fw-bold text-light">Hola! Soy Gonzalo, te doy la bienvenida a
+                                ZETA-G!
+                            </p>
+                            <p class="card-text fs-3 fw-bold text-light texto">Te invito a ver mis proyectos en: 
+                                <a class="text-decoration-none texto-error-luminoso text-danger" [href]="urlGit">
+                                    {{urlGit}}
+                                </a>
+                            </p>
+                            <p class="card-text fs-3 fw-bold text-light texto">Usuario: {{usuario}}
+                            </p>
+                            <p class="card-text fs-3 fw-bold text-light texto">Cantidad de proyectos actuales: {{cantidad}}
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </ng-template>
         </div>
     </div>
 
-    <div class="row w-100 d-flex justify-content-center mb-2 ml-0">
+    <div class="row w-100 d-flex justify-content-center  ml-0">
         <div class="col col-11 col-lg-12 justify-content-center mb-2">
             <div class="w-100 sombra-luminosa borde p-2" style="margin: 0 auto;">
                 <p class="fs-3 fw-bold texto"> El juego "BATALLA DRAGON BALL" consiste en vencer a los temibles Cell
@@ -31,10 +48,12 @@
                 <p class="fs-3 fw-bold texto">
                     Esto provocará que las explosiones por parte de los Cell Junior
                     comiencen de forma aleatoria en el territorio donde se encuentra nuestro héroe.
-                    Para evadir esas explosiones, debemos mover a Gohan utilizando las teclas 'a' (izquierda), 's'(abajo). 'w' (arriba),'d' (derecha).
+                    Para evadir esas explosiones, debemos mover a Gohan utilizando las teclas 'a' (izquierda),
+                    's'(abajo). 'w' (arriba),'d' (derecha).
                 </p>
                 <p class="fs-3 fw-bold texto">
-                    A su vez, debemos ir atacando a los enemigos, haciendo click izquierdo (del mouse) sobre el territorio enemigo, causando nuestras propias explosiones.
+                    A su vez, debemos ir atacando a los enemigos, haciendo click izquierdo (del mouse) sobre el
+                    territorio enemigo, causando nuestras propias explosiones.
                 </p>
                 <p class="fs-3 fw-bold texto">
 

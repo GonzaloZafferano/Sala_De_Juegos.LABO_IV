@@ -10,7 +10,7 @@
             <div #contenedorVillanos class="contenedor-villanos" (click)="clickContenedorVillanos($event)">
                 <img #explosionVillanos class="explosion-campo-villanos" 
                     [ngClass]="{'explosion-invisible': !explosionGohanVisible}"
-                    src="assets/batalladragonball/explosionG.png" alt="">
+                    src="assets/batalladragonball/explosionG.png" alt="imagen-explosion">
                 <div *ngIf="escena; else batalla" [ngClass]="{'cell-aparece' : escena}" class="w-100 d-flex justify-content-center">
                     <img class="imagen-cell" alt="imagen-cell" style="border-radius: 40px;" src="assets/batalladragonball/cell-aparece.gif">
                 </div>
@@ -19,7 +19,7 @@
                         <div class="contenedor-villanos-posicion">
                             <div class="villano" #cellDiv [ngClass]="{'vencido' : vidaCell <= 0 || !finDelJuego}"
                                 [ngClass]="{'golpe' : golpeACell}" (click)="ataqueCell()">
-                                <img class="imagen-villano" [src]="cell?.vivo ? cell?.imagenVivo : cell?.imagenVencido">
+                                <img class="imagen-villano" alt="imagen-villano" [src]="cell?.vivo ? cell?.imagenVivo : cell?.imagenVencido">
                             </div>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                             <div class="villano" [ngClass]="{'vencido' : !enemigo.vivo || finDelJuego}"
                                 (click)="ataque(enemigo)"
                                 [style]="'left:'+ enemigo.posicion?.x+'px;top:' + enemigo.posicion?.y +'px;'">
-                                <img [ngClass]="{'vivo' : enemigo.vivo && !cargaKi}" class="imagen-villano"
+                                <img [ngClass]="{'vivo' : enemigo.vivo && !cargaKi}" class="imagen-villano" alt="imagen-villano"
                                     [src]="enemigo.vivo ? enemigo.imagenVivo : enemigo.imagenVencido">
                             </div>
                         </div>
@@ -40,16 +40,16 @@
             <div>
                 <div #contenedor class="contenedor-heroe">
                     <div *ngIf="escena; else heroe" [ngClass]="{'gohan-aparece' : jefe}" class="w-100 d-flex justify-content-center">
-                        <img style="margin: 0 auto; border-radius: 30px;" src="assets/batalladragonball/gohan.gif">
+                        <img style="margin: 0 auto; border-radius: 30px;" alt="imagen-gohan" src="assets/batalladragonball/gohan.gif">
                     </div>
                     <ng-template #heroe>
                         <div [ngClass]="{'vencido' : vida <= 0}" class="contenedor-heroe-posicion" #protagonista>
-                            <img [ngClass]="{'golpe' : golpe}" class="imagen-heroe" [ngClass]="{'alturaKi' : cargaKi}"
+                            <img [alt]="'imagen-gohan'" [ngClass]="{'golpe' : golpe}" class="imagen-heroe" [ngClass]="{'alturaKi' : cargaKi}"
                                 [src]="imagenProtagonista" alt="">
                         </div>
                     </ng-template>
                     <div #explosion class="explosion">
-                        <img src="assets/batalladragonball/explosion.png" class="imagen-explosion" alt="">
+                        <img src="assets/batalladragonball/explosion.png" [alt]="'imagen-explosion'" class="imagen-explosion" alt="">
                     </div>
                 </div>
             </div>

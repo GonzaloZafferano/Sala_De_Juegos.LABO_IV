@@ -11,6 +11,7 @@
 
 .carta {
   transition: transform 0.6s ease;
+  pointer-events: none !important;
 }
 
 .rotar-atras {
@@ -23,6 +24,7 @@
 
 .deshabilitado {
   opacity: 0.5;
+  pointer-events: none !important;
 }
 
 .boton-juego {

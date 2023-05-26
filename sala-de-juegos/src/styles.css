@@ -162,6 +162,24 @@
     }
 }
 
+@keyframes efecto-titulo-error-luminoso {
+    0% {
+        text-shadow: 0 0 5px #ff7700;
+    }
+
+    50% {
+        text-shadow: 0 0 20px #ff1e00, 0 0 30px #ff1e00;
+    }
+
+    100% {
+        text-shadow: 0 0 5px #ff7b00;
+    }
+}
+
+.texto-error-luminoso{
+    animation: efecto-titulo-error-luminoso 2s infinite;
+}
+
 .texto-luminoso {
     animation: efecto-texto-luminoso 2s infinite;
 }
@@ -188,32 +206,72 @@
     animation: efecto-fondo-luminoso 2s infinite;
 }
 
+
+/*
+box-shadow:
+[offset-x] [offset-y] [blur-radius] [spread-radius] [color];
+offset-x: Especifica el desplazamiento horizontal de la sombra con un valor positivo (hacia la derecha) o negativo (hacia la izquierda).
+offset-y: Especifica el desplazamiento vertical de la sombra con un valor positivo (hacia abajo) o negativo (hacia arriba).
+blur-radius: Especifica el nivel de desenfoque de la sombra. Un valor mayor creará una sombra más difusa.
+spread-radius (opcional): Controla la extensión de la sombra. Un valor positivo hará que la sombra se expanda y un valor negativo la hará más compacta.
+color: Especifica el color de la sombra. Puedes usar nombres de colores, valores hexadecimales, RGB, HSL, entre otros.
+*/
+
 @keyframes efecto-sombra-luminosa {
     0% {
         box-shadow:
             5px 5px 5px rgba(255, 6, 6, 0.2),
             5px -5px 5px rgba(255, 6, 6, 0.2),
-            5px 5px 5px rgba(255, 6, 6, 0.2),
+            -5px -5px 5px rgba(255, 6, 6, 0.2),
             -5px 5px 5px rgba(255, 6, 6, 0.2);
     }
 
     50% {
         box-shadow:
-            5px 10px 30px rgba(255, 243, 6, 1),
-            5px -10px 30px rgba(255, 243, 6, 0.8),
-            5px 10px 30px rgba(255, 243, 6, 1),
-            -5px 10px 30px rgba(255, 243, 6, 0.8);
+            5px 5px 20px rgba(255, 243, 6, 1), /*der-abajo*/
+             5px -5px 20px rgba(255, 243, 6, 0.8), /*der-arriba*/          
+            -5px -5px 20px rgba(255, 243, 6, 1),  /*izq-arriba*/
+            -5px 5px 20px rgba(255, 243, 6, 0.8);  /*izq-abajo*/
     }
 
     100% {
         box-shadow:
             5px 5px 5px rgba(255, 6, 6, 0.2),
             5px -5px 5px rgba(255, 6, 6, 0.2),
-            5px 5px 5px rgba(255, 6, 6, 0.2),
+            -5px -5px 5px rgba(255, 6, 6, 0.2),
             -5px 5px 5px rgba(255, 6, 6, 0.2);
     }
 }
 
 .sombra-luminosa {
     animation: efecto-sombra-luminosa 5s infinite;
+}
+
+@keyframes efecto-sombra-luminosa-alternativa {
+    0% {
+        box-shadow:
+            5px 5px 5px rgba(6, 35, 255, 0.2),
+            5px -5px 5px rgba(6, 35, 255, 0.2),
+            -5px -5px 5px rgba(6, 35, 255, 0.2),
+            -5px 5px 5px rgba(6, 35, 255, 0.2);
+    }
+
+    50% {
+        box-shadow:
+            5px 10px 30px rgb(6, 255, 189,1),
+            5px -10px 30px rgb(6, 255, 189,0.8),
+            -5px -10px 30px rgb(6, 255, 189,1),
+            -5px 10px 30px rgba(3, 255, 188, 0.8);
+    }
+
+    100% {
+        box-shadow:
+            5px 5px 5px rgba(6, 35, 255, 0.2),
+            5px -5px 5px rgba(6, 35, 255, 0.2),
+            -5px -5px 5px rgba(6, 35, 255, 0.2),
+            -5px 5px 5px rgba(6, 35, 255, 0.2);
+    }
+}
+.sombra-luminosa-alternativa{
+    animation: efecto-sombra-luminosa-alternativa 5s infinite;
 }

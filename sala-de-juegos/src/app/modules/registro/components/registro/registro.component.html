@@ -8,7 +8,7 @@
         <div class="row w-100 d-flex justify-content-center ml-0">
 <div class="col col-12 justify-content-center col-lg-6">
 
-        <div class="card p-4 mt-4 centrar sombra">
+        <div class="card p-4 mt-4 centrar sombra-luminosa">
             <form [formGroup]="form" (ngSubmit)="registrarUsuario()">
                 <fieldset>
                     <legend>
@@ -25,7 +25,7 @@
                         </ng-container>
                         <ng-container *ngIf="nombreUsuario?.hasError('pattern')">
                             <small class="d-block text-danger">
-                                Formato inválido para el nombre de usuario.
+                                Formato inválido para el nombre de usuario (letras y números solamente).
                             </small>
                         </ng-container>
                     </div>
@@ -70,7 +70,7 @@
                         <label class="mt-3">¿Ya poseé una cuenta? Ingrese
                             <a class="" routerLink="../login">AQUI</a></label>
 
-                        <button type="submit" class="btn btn-primary mt-2 fw-bold fs-5">
+                        <button type="submit" class="btn btn-primary mt-2 fw-bold">
                             Registrar
                         </button>
                     </div>
