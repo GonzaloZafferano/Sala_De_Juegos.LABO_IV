@@ -12,8 +12,8 @@
 }
 
 
- /*SCROLL*/
- ::-webkit-scrollbar {
+/*SCROLL*/
+::-webkit-scrollbar {
   width: 10px;
   border-radius: 100px !important;
 
@@ -97,6 +97,21 @@
 
 .icono {
   scale: 3 !important;
+}
+
+.titulo-nombre-usuario {
+  align-self: center;
+  margin: auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nombre-usuario {
+  word-break: break-all !important;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
 }
 
 @media screen and (max-width: 1550px) {

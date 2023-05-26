@@ -10,7 +10,7 @@
 <div class="row w-100 mt-3 ">
     <div class="col col-lg-3">
         <div class="contenedor-cartas m-2">
-            <h3 class="text-center">Mazo</h3>
+            <h3 class="text-center">Mazo {{!deshabilitarMazo ? '(Pedir carta)' : ''}}</h3>
             <button [disabled]="deshabilitarMazo" (click)="proximaCarta()" style="height: 250px;  border: none;"
                 class="p-0 m-0">
                 <img src="assets/mayormenor/mazo.jpg" [ngClass]="{'deshabilitado' : deshabilitarMazo}" class="m-0 p-0"
@@ -57,14 +57,14 @@
 <div class="row w-100 ml-0">
     <div class="col-12 d-flex flex-column justify-content-center text-center">
         <div class="d-flex justify-content-center">
-            <!-- <p class="fw-bold fs-5 text-center text-light p-1 bg-success">      
+            <p class="fw-bold fs-5 text-center text-light p-1 bg-success">      
                 IMPORTANTE: El juego termina al reiniciar la partida o consumir el mazo completo. Se sumará un punto por cada acierto.   
-            </p> -->
+            </p>
         </div>
         <h5 class="p-1 m-1">Cantidad de aciertos: {{aciertos}}</h5>
         <h5 class="p-1 m-1">Cantidad de errores: {{errores}}</h5>
         <h5 class="p-1 m-1">Cantidad de empates: {{empates}}</h5>
-        <!-- <h5 class="p-1 m-1">Cartas restantes: {{52 - indiceCarta}}</h5> -->
+        <h5 class="p-1 m-1">Cartas restantes: {{52 - indiceCarta}}</h5>
     </div>
 </div>
 <div class="row w-100">

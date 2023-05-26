@@ -10,9 +10,9 @@
                     <div
                         [ngClass]="{'mensaje-ajeno': mensaje.usuarioId != usuarioLogueadoId, 'mensaje-propio': mensaje.usuarioId == usuarioLogueadoId}">
                         <div class="mensaje">
-                            <span *ngIf="mensaje.usuarioId != usuarioLogueadoId">{{mensaje.usuario}}</span>
+                            <span *ngIf="mensaje.usuarioId != usuarioLogueadoId" class="romper-palabra">{{mensaje.usuario}}</span>
                             <span>{{obtenerFechaString(mensaje)}}</span>
-                            <p>
+                            <p class="romper-palabra">
                                 {{mensaje.mensaje}}
                             </p>
                         </div>

@@ -1,6 +1,6 @@
 <div>
-    <div class="bg-success" style="height: 50px;">
-        <nav style="height: 100% !important;" class=" d-flex texto-luminoso fondo-app-unico">
+    <div class="bg-success" >
+        <nav style="min-height: 60px !important;" class=" d-flex texto-luminoso fondo-app-unico">
             <div class="bg-success" class="dropdown">
                 <button class="dropdown-button boton-icono fondo-app-unico">
                     <!-- ICONOS FONT AWESOME (NO FUNCIONAN LOS DE BOOTSTRAP)-->
@@ -12,9 +12,9 @@
                     <button routerLink="ahorcado" class="btn btn-primary m-2 fs-4 fw-bold boton">Ahorcado</button>
                     <button routerLink="mayor-menor" class="btn btn-primary m-2 fs-4 fw-bold boton">Mayor Menor</button>
                     <button routerLink="preguntados" class="btn btn-primary m-2 fs-4 fw-bold boton">Preguntados</button>
-                    <button routerLink="chat" class="btn btn-primary m-2 fs-4 fw-bold boton">Sala de CHAT</button>
                     <button routerLink="batallaDragonBall" class="btn btn-primary m-2 fs-4 fw-bold boton">Batalla Dragon
                         Ball</button>
+                    <button routerLink="chat" class="btn btn-primary m-2 fs-4 fw-bold boton">Sala de CHAT</button>
                 </div>
             </div>
             <div *ngIf="spinner; else titulo" class="d-flex" style="align-items: center; height: 100%;">
@@ -22,24 +22,27 @@
             </div>
             <ng-template #titulo>
                 <ng-container *ngIf="usuarioActual">
-                    <h3 class="px-2 fs-2 fw-bold text-light" style="align-self: center; margin: auto 5px;">
-                        <span class="nombre-usuario">
-                            {{usuarioActual.usuario}}
-                        </span>
-                    </h3>
+                    <div class="row p-0 m-0">
+                        <div class="col col-12 col-md-12 p-0 m-0">
+                            <h3 class="p-0 m-0 fs-2 fw-bold text-light titulo-nombre-usuario">
+                                <span class="nombre-usuario">
+                                    {{usuarioActual.usuario}}
+                                </span>
+                            </h3>
+                        </div>
+                    </div>
                 </ng-container>
             </ng-template>
         </nav>
     </div>
     <div>
-    </div>
-    <div >
         <router-outlet></router-outlet>
     </div>
     <div class="datos-usuario">
-        <div  class="card datos-usuario sombra-luminosa fondo-app-unico fs-3">
+        <div class="card datos-usuario sombra-luminosa fondo-app-unico fs-3">
             <div class="card-body sombra">
-                <div *ngIf="spinner; else datosUsuario" class="d-flex justify-content-center" style="height: 100%; width: 100%;" >
+                <div *ngIf="spinner; else datosUsuario" class="d-flex justify-content-center"
+                    style="height: 100%; width: 100%;">
                     <span class="m-1 fs-5 fw-bold">Cargando...</span>
                     <div class="spinner-border text-light" style="align-self: center; scale: 0.7;"></div>
                 </div>

@@ -84,7 +84,7 @@ export class BatallaDragonBallComponent {
       const containerRect: DOMRect = this.contenedorVillanos?.nativeElement.getBoundingClientRect();
       let contenedorAncho = containerRect.width;
       let contenedorAlto = containerRect.height;
-      return { numero: this.numero += 1, y: this.y += contenedorAlto / 5, x: Math.floor(Math.random() * (contenedorAncho*0.9))}
+      return { numero: this.numero += 1, y: this.y += contenedorAlto / 5, x: Math.floor(Math.random() * (contenedorAncho * 0.9)) }
     }
     return null;
   }
@@ -212,10 +212,11 @@ export class BatallaDragonBallComponent {
 
   @HostListener('window:keydown', ['$event'])
   onKeyPress(event: KeyboardEvent) {
-    if (!this.finDelJuego)
+    if (!this.finDelJuego) {
       this.moverProtagonista(event);
+      event.preventDefault();
+    }
   }
-
 
   moverProtagonista(event: KeyboardEvent) {
     if (this.protagonista) {
@@ -223,19 +224,16 @@ export class BatallaDragonBallComponent {
       this.altoBoton = buttonRect.height;
       this.anchoBoton = buttonRect.width;
       if (this.contenedor) {
-
         const containerRect: DOMRect = this.contenedor.nativeElement.getBoundingClientRect();
         this.contenedorAncho = containerRect.width;
         this.contenedorAlto = containerRect.height;
         this.buttonPositionX = buttonRect.left - containerRect.left;
         this.buttonPositionY = buttonRect.top - containerRect.top;
-
-   
       }
     }
 
     let pasos = this.steps;
-  
+
     switch (event.key) {
       case 'w':
         this.buttonPositionY = Math.max(-100, this.buttonPositionY - pasos);
@@ -251,6 +249,10 @@ export class BatallaDragonBallComponent {
         break;
       case 'd':
         this.buttonPositionX = Math.min(this.contenedorAncho - this.anchoBoton, this.buttonPositionX + pasos);
+        break;
+      case ' ':
+        if (!this.coolDownKi)
+          this.elevarKI();
         break;
       default:
         return;

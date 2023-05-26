@@ -50,6 +50,10 @@
      right: 25px;
  }
 
+ .romper-palabra{
+    word-break: break-all !important;
+ }
+
  .estilos-contenedor {
      height: 100% !important;
      overflow-y: auto;
