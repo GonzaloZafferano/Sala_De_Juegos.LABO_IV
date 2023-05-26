@@ -37,16 +37,16 @@
         <router-outlet></router-outlet>
     </div>
     <div class="datos-usuario">
-        <div class="card datos-usuario sombra-luminosa fondo-app-unico fs-4">
+        <div  class="card datos-usuario sombra-luminosa fondo-app-unico fs-3">
             <div class="card-body sombra">
-                <div *ngIf="spinner; else datosUsuario" class="d-flex justify-content-center">
-                    <span class="m-3 fs-3 fw-bold">Cargando...</span>
-                    <div class="spinner-border text-light" style="align-self: center; scale: 1.2;"></div>
+                <div *ngIf="spinner; else datosUsuario" class="d-flex justify-content-center" style="height: 100%; width: 100%;" >
+                    <span class="m-1 fs-5 fw-bold">Cargando...</span>
+                    <div class="spinner-border text-light" style="align-self: center; scale: 0.7;"></div>
                 </div>
                 <ng-template #datosUsuario>
                     <ng-container *ngIf="usuarioActual">
-                        <h5 class="card-title fs-4 texto-luminoso">{{usuarioActual.usuario}}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted fs-5">{{usuarioActual.correo}}</h6>
+                        <h5 class="card-title fs-5 texto-luminoso">{{usuarioActual.usuario}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted fs-6">{{usuarioActual.correo}}</h6>
                         <p class="card-text fs-6 p-0 m-0">Fecha de registro:</p>
                         <p class="card-text fs-6 p-0 m-0">{{obtenerFechaString(usuarioActual)}}</p>
                     </ng-container>
