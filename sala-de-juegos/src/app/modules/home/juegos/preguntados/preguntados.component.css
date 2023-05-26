@@ -1,8 +1,21 @@
+* {
+    color: wheat;
+}
+
 .opcion {
     background-color: white;
     color: green !important;
     border-radius: 50px;
     width: 100% !important;
+    display: flex;
+    align-items: center;
+}
+
+.opcion-texto {
+    color: inherit;
+    margin: 0;
+    padding: 3px;
+    padding-left: 30px;
 }
 
 .opcion:hover {
@@ -22,7 +35,7 @@
     align-self: center;
 }
 
-.bloqueado{
+.bloqueado {
     pointer-events: none;
     opacity: 0.5;
 }

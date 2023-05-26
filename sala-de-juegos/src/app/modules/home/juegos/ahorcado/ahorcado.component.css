@@ -1,3 +1,6 @@
+*{
+    color: wheat;
+}
 .contenedor-letras {
     display: flex;
     flex-direction: row;

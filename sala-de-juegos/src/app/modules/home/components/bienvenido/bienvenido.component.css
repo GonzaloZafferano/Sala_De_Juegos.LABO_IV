@@ -1,13 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300&family=Roboto:wght@100&display=swap');
+
 .titulo {
     font-family: 'Comic Neue', cursive;
     font-family: 'Roboto', sans-serif;
     font-family: 'Tourney', cursive;
-    font-size: 10vw !important;
+    font-size: 10vw;
 }
 
 @media screen and (max-width: 760px) {
-    .letra{
+    .letra {
         font-size: 5vw !important;
     }
+}
+
+.titulo {
+    color: #fff;    
+}
+
+.contenedor-principal {
+    flex-direction: column;
+}
+
+.texto-principal {
+    font-size: 3vw;
+    letter-spacing: 3px;
+    word-wrap: break-word;
+    color: wheat;
 }

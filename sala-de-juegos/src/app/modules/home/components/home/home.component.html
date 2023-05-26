@@ -1,16 +1,20 @@
 <div>
     <div class="bg-success" style="height: 50px;">
-        <nav style="height: 100% !important;" class=" d-flex">
+        <nav style="height: 100% !important;" class=" d-flex texto-luminoso fondo-app-unico">
             <div class="bg-success" class="dropdown">
-                <button class="dropdown-button  m-0 p-0 bg-success">
-                    <img height="50px" src="assets/hmenu.png">
+                <button class="dropdown-button boton-icono fondo-app-unico">
+                    <!-- ICONOS FONT AWESOME (NO FUNCIONAN LOS DE BOOTSTRAP)-->
+                    <!--REQUIERE LIBRERIA PARA ICONOS QUE ESTA CARGADA EN EL INDEX-->
+                    <!-- https://fontawesome.com/search?o=r&f=brands%2Cclassic -->
+                    <i class="fas fa-solid fa-bars text-light icono"></i>
                 </button>
-                <div class="dropdown-content">
+                <div class="dropdown-content fondo-app-unico sombra-luminosa">
                     <button routerLink="ahorcado" class="btn btn-primary m-2 fs-4 fw-bold boton">Ahorcado</button>
                     <button routerLink="mayor-menor" class="btn btn-primary m-2 fs-4 fw-bold boton">Mayor Menor</button>
                     <button routerLink="preguntados" class="btn btn-primary m-2 fs-4 fw-bold boton">Preguntados</button>
                     <button routerLink="chat" class="btn btn-primary m-2 fs-4 fw-bold boton">Sala de CHAT</button>
-                    <button routerLink="batallaDragonBall" class="btn btn-primary m-2 fs-4 fw-bold boton">Batalla Dragon Ball</button>                    
+                    <button routerLink="batallaDragonBall" class="btn btn-primary m-2 fs-4 fw-bold boton">Batalla Dragon
+                        Ball</button>
                 </div>
             </div>
             <div *ngIf="spinner; else titulo" class="d-flex" style="align-items: center; height: 100%;">
@@ -29,11 +33,11 @@
     </div>
     <div>
     </div>
-    <div style="height: 80vh; margin: 10px;">
+    <div >
         <router-outlet></router-outlet>
     </div>
     <div class="datos-usuario">
-        <div class="card datos-usuario sombra fs-4">
+        <div class="card datos-usuario sombra-luminosa fondo-app-unico fs-4">
             <div class="card-body sombra">
                 <div *ngIf="spinner; else datosUsuario" class="d-flex justify-content-center">
                     <span class="m-3 fs-3 fw-bold">Cargando...</span>
@@ -41,7 +45,7 @@
                 </div>
                 <ng-template #datosUsuario>
                     <ng-container *ngIf="usuarioActual">
-                        <h5 class="card-title fs-4">{{usuarioActual.usuario}}</h5>
+                        <h5 class="card-title fs-4 texto-luminoso">{{usuarioActual.usuario}}</h5>
                         <h6 class="card-subtitle mb-2 text-muted fs-5">{{usuarioActual.correo}}</h6>
                         <p class="card-text fs-6 p-0 m-0">Fecha de registro:</p>
                         <p class="card-text fs-6 p-0 m-0">{{obtenerFechaString(usuarioActual)}}</p>

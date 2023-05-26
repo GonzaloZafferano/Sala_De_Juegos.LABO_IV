@@ -1,8 +1,8 @@
 <div class="d-flex justify-content-center">
-    <h3 class="fw-bold fs-3">Juego: <span class="fs-2">MAYOR O MENOR</span> </h3>
+    <h3 class="fw-bold fs-3">Juego: <span class="fs-2 titulo-luminoso">MAYOR O MENOR</span> </h3>
 </div>
-<div class="row w-100 justify-content-center m-1">
-    <div class="col-12 col-lg-6 jerarquia justify-content-center">
+<div class="row w-100 justify-content-center">
+    <div class="col-10 col-lg-6 jerarquia justify-content-center fondo-app-unico">
         <h3>Jerarquía de las cartas:</h3>
         <h4>ACE > KING > QUEEN > JACK > 10 > 9 > 8 > 7 > 6 > 5 > 4 > 3 > 2</h4>
     </div>
@@ -40,7 +40,7 @@
             <div *ngIf="spinner; else carta" class="d-flex justify-content-center"
                 style="align-items: center; height: 100%;">
                 <span class="m-3 fs-3 fw-bold">Cargando...</span>
-                <div class="spinner-border text-danger mx-5" style="align-self: center; scale: 1.2;"></div>
+                <div class="spinner-border text-light mx-5" style="align-self: center; scale: 1.2;"></div>
             </div>
             <ng-template #carta>
                 <img [src]="cartaActual?.image" height="250px" class="carta" [ngClass]="{'rotar-atras': rotarActual}"
@@ -50,20 +50,21 @@
     </div>
 </div>
 
-
-
-<div class="row m-5 ml-0">
+<div class="row w-100 ml-0">
     <div class="col-12 d-flex flex-column justify-content-center text-center">
-        <p class="fw-bold fs-5 text-center bg-success text-light p-1">IMPORTANTE: El juego termina al reiniciar la partida o consumir el mazo completo. Se sumará un punto por cada acierto.</p>
-
+        <div class="d-flex justify-content-center">
+            <!-- <p class="fw-bold fs-5 text-center text-light p-1 bg-success">      
+                IMPORTANTE: El juego termina al reiniciar la partida o consumir el mazo completo. Se sumará un punto por cada acierto.   
+            </p> -->
+        </div>
         <h5 class="p-1 m-1">Cantidad de aciertos: {{aciertos}}</h5>
         <h5 class="p-1 m-1">Cantidad de errores: {{errores}}</h5>
         <h5 class="p-1 m-1">Cantidad de empates: {{empates}}</h5>
-        <h5 class="p-1 m-1">Cartas restantes: {{52 - indiceCarta}}</h5>
+        <!-- <h5 class="p-1 m-1">Cartas restantes: {{52 - indiceCarta}}</h5> -->
     </div>
 </div>
 <div class="row w-100">
-    <div class="d-flex justify-content-center mt-3 mb-3">
+    <div class="d-flex justify-content-center m-2">
         <button (click)="reiniciar(false)" class="btn btn-success fs-2 fw-bold">{{textoBoton}}</button>
     </div>
 </div>

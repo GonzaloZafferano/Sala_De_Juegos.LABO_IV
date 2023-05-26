@@ -10,17 +10,17 @@
                 <div *ngIf="spinner; else pregunta" class="d-flex justify-content-center"
                     style="height: 500px !important; align-items: center; height: 100%;">
                     <span class="m-3 fs-3 fw-bold">Cargando pregunta...</span>
-                    <div class="spinner-border text-danger " style="align-self: center; scale: 1;"></div>
+                    <div class="spinner-border text-light " style="align-self: center; scale: 1;"></div>
                 </div>
                 <ng-template #pregunta>
                     <div class="d-flex justify-content-center fd-column" style="height: 350px !important;">
                         <img class="imagen" [src]="digimones[indiceCorrecto]?.img" alt="imagen digimon">
                     </div>
-                    <div class=" fd-column">
+                    <div class="fd-column">
                         <div class="mt-3 mb-3 p-1 d-flex justify-content-center" [ngClass]="{'bloqueado' : bloquear}"
                             *ngFor="let digimon of digimones; let indice = index">
                             <div class="opcion" (click)="eleccion(indice)">
-                                <p class="text fs-3 fw-bold px-3">{{indice+1}} - {{digimon?.name}}</p>
+                                <p class="text opcion-texto fs-3 fw-bold">{{indice+1}} - {{digimon?.name}}</p>
                             </div>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                 Cantidad de errores: {{errores}}
             </p>
             <div class="d-flex justify-content-center">
-                <button class="btn btn-warning fs-2 fw-bold p-2 mb-3" (click)="reiniciar()">REINICIAR</button>
+                <button class="btn btn-warning fs-2 text-dark fw-bold p-2 mb-3" (click)="reiniciar()">REINICIAR</button>
             </div>
         </div>
     </div>

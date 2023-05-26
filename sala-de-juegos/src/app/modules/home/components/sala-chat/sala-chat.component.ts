@@ -13,7 +13,7 @@ export class SalaChatComponent {
   listaDeMensajes: any[] | undefined;
   mensajeEscrito: string = '';
   suscripcion: any;  
-  textoBoton: string = 'Enviar Mensaje';
+  textoBoton: string = 'Enviar';
   textoInput: string = '';
   usuarioActualNombre: string = '';
   enviandoMensaje : boolean = false;
