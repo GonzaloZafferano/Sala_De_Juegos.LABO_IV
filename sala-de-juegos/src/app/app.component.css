@@ -1,3 +1,9 @@
 .altura{
     height: 100vh;
 }
+
+.sticky{
+    position: sticky !important;
+    top: 0px !important;   
+    z-index: 9999 !important; 
+}
