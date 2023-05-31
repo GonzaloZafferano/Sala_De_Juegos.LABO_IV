@@ -272,7 +272,7 @@ export class BatallaDragonBallComponent {
 
       this.finExplosiones();
       this.finMovimientoCellJr();
-      this.toast.gano('Felicitaciones! <br>Has derrotado a los Cell Jr!! <br>Sin embargo...', ' ');
+      this.toast.gano('Felicitaciones! <br>Has derrotado a los Cell Jr!! <br>Sin embargo...', ' ', 3000);
 
       setTimeout(() => {
         this.enemigos = [];

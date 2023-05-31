@@ -56,20 +56,7 @@ export class ToastPredeterminadosService {
       extendedTimeOut: 1000,
       enableHtml: true,
       positionClass: 'toast-custom-juego-position',     
-      //closeButton : true,
-      buttons: [
-        {
-          text: 'Botón adicional',
-          action : ()=>{
-            alert();
-          }
-          // action: (toast) => {
-          //   // Acción al hacer clic en el botón adicional
-          //   this.toastr.remove(toast.toastId);
-          //   // Aquí puedes realizar la acción deseada
-          // }
-        }
-      ]
+      //closeButton : true,     
     };
 
     this.toastr.success(mensaje != '' ? mensaje : 'HA GANADO!!!.', 
@@ -84,20 +71,7 @@ export class ToastPredeterminadosService {
       extendedTimeOut: 1000,
       enableHtml: true,
       positionClass: 'toast-custom-juego-position',     
-      //closeButton : true,
-      buttons: [
-        {
-          text: 'Botón adicional',
-          action : ()=>{
-            alert();
-          }
-          // action: (toast) => {
-          //   // Acción al hacer clic en el botón adicional
-          //   this.toastr.remove(toast.toastId);
-          //   // Aquí puedes realizar la acción deseada
-          // }
-        }
-      ]
+      //closeButton : true,     
     };
 
     this.toastr.success(mensaje != '' ? mensaje : 'HA GANADO!!!.', 

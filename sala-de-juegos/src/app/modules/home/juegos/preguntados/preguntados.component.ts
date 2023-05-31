@@ -1,11 +1,11 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { LogJuego } from 'src/app/models/logJuego';
 import { FirestoreLoginService } from 'src/app/services/firestoreAuthLog/firestore-auth-login.service';
 import { FirestoreUsuariosService } from 'src/app/services/firestoreUsuarios/firestore-usuarios.service';
 import { ToastPredeterminadosService } from 'src/app/services/toastPredeterminados/toast-predeterminados.service';
 import { LogJuegoService } from 'src/app/services/logsJuego/log-juego.service';
-import { NavigationStart, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { PreguntadosService } from 'src/app/services/preguntados/preguntados.service';
 
 @Component({
   selector: 'app-preguntados',
@@ -24,8 +24,8 @@ export class PreguntadosComponent {
   digimones: any[] = [];
   indiceCorrecto: number = -1;
   spinner: boolean = false;
-  bloquear : boolean = false;
-  constructor(private http: HttpClient, private toast: ToastPredeterminadosService,
+  bloquear: boolean = false;
+  constructor(private preguntadosService: PreguntadosService, private toast: ToastPredeterminadosService,
     private router: Router,
     private loginService: FirestoreLoginService,
     private usuarioService: FirestoreUsuariosService,
@@ -33,12 +33,6 @@ export class PreguntadosComponent {
 
   ngOnInit() {
     this.obtenerDigimones();
-
-    // this.router.events.subscribe(event => {
-    //   if (event instanceof NavigationStart) {
-    //     // Aquí se ejecuta cuando la página se está refrescando     
-    //   }
-    // });
   }
 
   ngOnDestroy() {
@@ -48,7 +42,8 @@ export class PreguntadosComponent {
     this.spinner = true;
     if (this.suscripcion)
       this.suscripcion.unsubscribe();
-    this.suscripcion = this.http.get('https://digimon-api.vercel.app/api/digimon').subscribe(x => {
+
+    this.suscripcion = this.preguntadosService.obtenerImagenes().subscribe(x => {
       let listadoDeDigimones = x as any;
 
       this.randomA = this.obtenerRandom(listadoDeDigimones);
@@ -107,7 +102,7 @@ export class PreguntadosComponent {
         finJuego = true;
       }
       else {
-        this.toast.gano('CORRECTO!!', ' ',1000);
+        this.toast.gano('CORRECTO!!', ' ', 1000);
       }
     } else {
       this.errores++;
@@ -115,14 +110,14 @@ export class PreguntadosComponent {
         this.toast.perdio(`INCORRECTO!! <br>La respuesta es '${this.digimones[this.indiceCorrecto].name}' <br>Tiene 3 errores! <br>FIN DEL JUEGO.`, ' ');
         finJuego = true;
       } else {
-        this.toast.perdio(`INCORRECTO!! <br>La respuesta es '${this.digimones[this.indiceCorrecto].name}'.`, ' ',1500);
+        this.toast.perdio(`INCORRECTO!! <br>La respuesta es '${this.digimones[this.indiceCorrecto].name}'.`, ' ', 1500);
       }
     }
 
     setTimeout(() => {
       if (!finJuego)
         this.reintentar();
-        else
+      else
         this.bloquear = true;
     }, 1000);
   }
